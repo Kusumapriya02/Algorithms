@@ -1,0 +1,126 @@
+---
+layout: default1
+title: Hamiltonian
+ref_name: hamil
+---
+
+<div class="implementation">
+    
+    <div class="container">
+        <div class="row">
+            
+            <div class="col-md-4">
+                <h5>Enter number of vertices:</h5>
+                <input type="number" class="form-control" id="input1"><br>
+                <h5>Enter input one by one: </h5>
+                <input type="number" class="form-control" id="input" placeholder="Enter a valid number:">
+                <br><button onclick="add()" class="btn btn-primary" id="add">Add</button><br><br>
+                <h6 id="every"></h6>
+                <h5>Click the button below: </h5>
+                <button onclick="answer()" class="btn btn-primary">Click</button><br><br>
+                <h6 id="array"></h6>
+                <h6 id="result"></h6>
+            </div>
+        </div>
+    </div>
+</div>
+
+<script type="text/javascript">
+    var input = document.getElementById("input");
+    input.addEventListener("keypress", function (event) {
+        if (event.key === "Enter") {
+            event.preventDefault();
+            document.getElementById("add").click();
+        }
+    });
+    var i = 0;
+    var arr = [];
+    function add() {
+        var val = document.getElementById("input").value;
+        arr[i] = parseInt(val);
+        document.getElementById("input").value = "";
+        i += 1;
+        document.getElementById("every").innerHTML = arr;
+    }
+    var str = "";
+    function answer() {
+        var n = document.getElementById("input1").value;
+        var c = 0;
+        str += "The entered graph is" + "<br><br>";
+        var graph = new Array(n);
+        for (var a = 0; a < n; a++) {
+            graph[a] = new Array(n);
+            str += "Adjacency list of Vertex " + (a) + ": " + "<br>";
+            for (var b = 0; b < n; b++) {
+                if (c < arr.length) {
+                    graph[a][b] = arr[c];
+                    str += String(graph[a][b]) + " ";
+                }
+                c++;
+            }
+            str += "<br>";
+        }
+        hamCycle(graph);
+    }
+
+    function isSafe(v, graph, path, pos) {
+        if (graph[path[pos - 1]][v] == 0) {
+            return false;
+        }
+        for (let i = 0; i < pos; i++) {
+            if (path[i] == v)
+                return false;
+        }
+        return true;
+    }
+
+    let hasCycle;
+    function hamCycle(graph) {
+        hasCycle = false;
+        let path = [];
+        path.push(0);
+        let visited = new Array(graph.length);
+        for (let i = 0; i < visited.length; i++)
+            visited[i] = false;
+        visited[0] = true;
+        str += "<br>The obtained hamiltonian cycles is/are" + "<br><br>";
+        FindHamCycle(graph, 1, path, visited);
+        if (hasCycle == false) {
+            str = '';
+            str += "No Hamiltonian Cycle possible";
+        }
+        document.getElementById("result").innerHTML = str;
+    }
+
+
+    function FindHamCycle(graph, pos, path, visited) {
+        if (pos == graph.length) {
+            if (graph[path[path.length - 1]][path[0]] != 0) {
+                path.push(0);
+                for (let i = 0; i < path.length; i++) {
+                    if (i == path.length - 1) {
+                        str += String(path[i]);
+                    } else {
+                        str += String(path[i]) + " " + "=>";
+                    }
+                }
+                str += "</br>";
+                path.pop();
+                hasCycle = true;
+            }
+            return;
+
+        }
+        for (let v = 0; v < graph.length; v++) {
+            if (isSafe(v, graph, path, pos) && !visited[v]) {
+
+                path.push(v);
+                visited[v] = true;
+                FindHamCycle(graph, pos + 1, path, visited);
+                visited[v] = false;
+                path.pop();
+
+            }
+        }
+    }
+</script>

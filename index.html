@@ -1,0 +1,317 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <style>
+        @import url('https://fonts.googleapis.com/css2?family=Poppins:wght@100;200;300;400;500;600;700&display=swap');
+
+        * {
+            box-sizing: border-box;
+            font-family: 'Poppins', sans-serif;
+        }
+
+        body {
+            margin: 0;
+            padding: 0;
+        }
+
+        .navbar {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            background-color: #698576;
+            color: white;
+        }
+
+        .title {
+            font-size: 1.5rem;
+            margin: .5rem;
+        }
+
+        .navbar-links ul {
+            margin: 0;
+            padding: 0;
+            display: flex;
+        }
+
+        .navbar-links li {
+            list-style: none;
+        }
+
+        .navbar-links li a {
+            text-decoration: none;
+            color: white;
+            padding: 1rem;
+            display: block;
+        }
+
+        .navbar-links li:hover {
+            background-color: #7BA18C;
+        }
+
+        .toggle-button {
+            position: absolute;
+            top: .75rem;
+            right: 1rem;
+            display: none;
+            flex-direction: column;
+            justify-content: space-between;
+            width: 30px;
+            height: 21px;
+        }
+
+        .toggle-button .bar {
+            height: 3px;
+            width: 100%;
+            background-color: white;
+            border-radius: 10px;
+        }
+
+        .area .container {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            align-items: center;
+            justify-content: center;
+        }
+
+        .left {
+            margin-left: 25px;
+        }
+
+        .right img {
+            width: 90%;
+            height: 50%;
+            padding: 1.5rem 0.5rem 1.5rem 2.5rem;
+        }
+
+        img {
+            border-radius: 5%;
+        }
+
+        .algod li,
+        .content li {
+            list-style: none;
+        }
+
+        .varial,
+        .block {
+            border: 1px solid black;
+            padding: 15px;
+            text-align: center;
+            width: 75%;
+            margin: 0 auto;
+            border-radius: 10px;
+            color: black;
+            background-color: white;
+            cursor: pointer;
+        }
+
+        .dropdown-item {
+            text-decoration: none;
+            color: black;
+        }
+
+        .varial {
+            font-weight: bold;
+            list-style: none;
+        }
+
+        .entire {
+            background-color: #EFF3F1;
+        }
+
+        img{
+            border-radius: 15%;
+        }
+
+        @media (max-width: 700px) {
+            .toggle-button {
+                display: flex;
+            }
+
+            .navbar-links {
+                display: none;
+                width: 100%;
+            }
+
+            .navbar {
+                flex-direction: column;
+                align-items: flex-start;
+            }
+
+            .navbar-links ul {
+                width: 100%;
+                flex-direction: column;
+            }
+
+            .navbar-links li {
+                text-align: center;
+            }
+
+            .navbar-links li a {
+                padding: .5rem 1rem;
+            }
+
+            .navbar-links.active {
+                display: flex;
+            }
+
+            .area .container {
+                grid-template-columns: 1fr;
+            }
+
+            .algo {
+                width: 100%;
+                transform: none;
+                margin: auto;
+                height: 50%;
+            }
+        }
+    </style>
+</head>
+
+<body>
+    <nav class="navbar">
+        <div class="title" style="font-weight:bold;">Algorithms</div>
+        <a href="#" class="toggle-button">
+            <span class="bar"></span>
+            <span class="bar"></span>
+            <span class="bar"></span>
+        </a>
+        <div class="navbar-links">
+            <ul>
+                <li><a href="#">Home</a></li>
+                <li><a href="#">About Us</a></li>
+            </ul>
+        </div>
+    </nav>
+    <div class="entire">
+        <div class="area">
+            <div class="container">
+                <div class="left">
+                    <div class="left-title">
+                        <h3>“Programming isn't about what you know, it's about what
+                            you
+                            can
+                            figure out.”</h3>
+                        <p class="text">
+                            An algorithm is a set of well-defined steps or rules that you need to follow to obtain a
+                            pre-determined result.
+                            For instance, when we talk about algorithms in computer programming, we already have our
+                            input
+                            and
+                            we know the expected output.
+                            Now, an algorithm would be all the defined steps to follow on the input to get the
+                            desired
+                            output.
+                        </p>
+                    </div>
+                </div>
+                <div class="right">
+                    <img src="https://www.getfoundfast.com/wp-content/uploads/2021/02/21feb15.jpg" alt="img"
+                        class="algo">
+                </div>
+            </div>
+        </div>
+        <div class="content">
+            <li class="content-dropdown">
+                <details class="algod">
+                    <summary class="varial">Sorting Algorithms</summary>
+                    <ul class="block">
+                        <li><a class="dropdown-item" href="bubble.html">Bubble Sort</a></li>
+                        <hr>
+                        <li><a class="dropdown-item" href="insertionsort .html">Insertion Sort</a></li>
+                        <hr>
+                        <li><a class="dropdown-item" href="quicksort.html">Quick Sort</a></li>
+                        <hr>
+                        <li><a class="dropdown-item" href="selection.html">Selection Sort</a></li>
+                        <hr>
+                        <li><a class="dropdown-item" href="merge.html">Merge Sort</a></li>
+                    </ul>
+                </details>
+                <br>
+                <details class="algod">
+                    <summary class="varial">Allocation Algorithms</summary>
+                    <ul class="block">
+                        <li><a class="dropdown-item" href="firstfit.html">First Fit Algorithm</a></li>
+                        <hr>
+                        <li><a class="dropdown-item" href="bestfit.html">Best Fit Algorithm</a></li>
+                        <hr>
+                        <li><a class="dropdown-item" href="worstfit.html">Worst Fit Algorithm</a></li>
+
+                    </ul>
+                </details>
+                <br>
+                <details class="algod">
+                    <summary class="varial">Page Replacement Algorithms</summary>
+                    <ul class="block">
+                        <li><a class="dropdown-item" href="fifo.html">First-In-First-Out PRA</a></li>
+                        <hr>
+                        <li><a class="dropdown-item" href="lrupage.html">Least Recently Used PRA</a></li>
+                        <hr>
+                        <li><a class="dropdown-item" href="optimal.html">Optimal PRA</a></li>
+
+                    </ul>
+                </details>
+                <br>
+                <!--<details class="algod">
+                    <summary class="varial">CPU Scheduling</summary>
+                    <ul class="block">
+                        <li><a class="dropdown-item" href="#">Shortest Remaining Time First SA</a></li>
+                        <hr>
+                        <li><a class="dropdown-item" href="#">Round Robin SA</a></li>
+
+                    </ul>
+                </details>
+                <br>-->
+                <details class="algod">
+                    <summary class="varial">String Algorithms</summary>
+                    <ul class="block">
+                        <li><a class="dropdown-item" href="RabinKarp.html">Rabin Karp Algorithm</a></li>
+                        <hr>
+                        <li><a class="dropdown-item" href="KMP.html">KMP Algorithm</a></li>
+
+                    </ul>
+                </details>
+                <br>
+                <ul class="block">
+                    <li><a class="dropdown-item" href="hamiltonion.html" style="font-weight:bold;">Hamiltonion Cycle</a>
+                    </li>
+                </ul>
+                <br>
+                <ul class="block">
+                    <li><a class="dropdown-item" href="subsetsum.html" style="font-weight:bold;">SubsetSum Algorithm</a>
+                    </li>
+                </ul>
+                <br>
+                <ul class="block">
+                    <li><a class="dropdown-item" href="towerofhanoi.html" style="font-weight:bold;">Tower of Hanoi</a>
+                    </li>
+                </ul>
+                <br>
+                <ul class="block">
+                    <li><a class="dropdown-item" href="queen.html" style="font-weight:bold;">N-Queens Algorithm</a>
+                    </li>
+                </ul>
+                
+            </li>
+            <br>
+            <br>
+        </div>
+    </div>
+
+    <script>
+        const toggleButton = document.getElementsByClassName('toggle-button')[0]
+        const navbarLinks = document.getElementsByClassName('navbar-links')[0]
+
+        toggleButton.addEventListener('click', () => {
+            navbarLinks.classList.toggle('active')
+        })
+    </script>
+</body>
+
+</html>

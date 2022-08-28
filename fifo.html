@@ -1,0 +1,123 @@
+---
+layout: default1
+title: First-In-First-Out
+ref_name: fifo
+---
+
+<div class="container">
+    <div class="row">
+        <div class="col-md-4">
+            <h5>Enter input one by one: </h5>
+            <input type="number" class="form-control" id="input" placeholder="Enter a valid number:">
+        </div>
+    </div><br>
+    <button class="btn btn-primary" id="add" onclick="add()">Add</button><br><br>
+
+    <h6 id="every"></h6>
+    <div class="row">
+        <div class="col-md-4">
+            <h5>Enter number of frames: </h5>
+            <input type="number" class="form-control" id="input1" placeholder="Enter a valid number:">
+        </div>
+    </div><br>
+
+    <button class="btn btn-primary" onclick="getresult()">Click</button><br><br>
+    <h6 id="pFaults"></h6>
+</div>
+<div id="result"></div>
+
+
+
+<script type="text/javascript">
+    var input = document.getElementById("input");
+    input.addEventListener("keypress", function (event) {
+        if (event.key === "Enter") {
+            event.preventDefault();
+            document.getElementById("add").click();
+        }
+    });
+    var i = 0;
+    var pages = [];
+    var str = "";
+    function add() {
+        var val = document.getElementById("input").value;
+        pages[i] = parseInt(val);
+        document.getElementById("input").value = "";
+        i += 1;
+        document.getElementById("every").innerHTML = pages;
+    }
+
+
+
+    function fifo(pages, frames) {
+        let pageFaults = 0;
+        let temp = new Array(frames).fill(-1)
+        var pageHits;
+        var pfpercent;
+        var phpercent;
+
+        str += "The entered pages are" + '&nbsp;' + "[";
+        for (var i = 0; i < pages.length; i++) {
+            if (i == (pages.length) - 1) {
+                str += String(pages[i]);
+            } else {
+                str += String(pages[i]) + "," + '&nbsp;';
+            }
+        }
+        str += "]" + "<br>" + "The entered number of frames is " + String(frames) + "<br>";
+
+        for (let i = 0; i < pages.length; i++) {
+            let s = 0;
+            for (let j = 0; j < frames; j++) {
+                if (pages[i] === temp[j]) {
+                    s++;
+                    pageFaults--;
+                }
+            }
+            pageFaults++;
+            if ((pageFaults <= frames) && (s === 0)) {
+                temp[i] = pages[i];
+                str += "The page at which the page faults occurs is " + (i + 1) + "<br>";
+                str += "The frame is" + '&nbsp;';
+                str += "[";
+                for (var k = 0; k < frames; k++) {
+                    if (k == frames - 1) {
+                        str += String(temp[k]);
+                    } else {
+                        str += String(temp[k]) + "," + '&nbsp;';
+                    }
+                }
+                str += "]" + "<br>";
+            } else if (s === 0) {
+                let pageHitAndPageRatio = (pageFaults - 1) % frames
+                temp[pageHitAndPageRatio] = pages[i];
+                str += "The page at which the page faults occurs is " + (i + 1) + "<br>";
+                str += "The frame is" + '&nbsp;';
+                str += "[";
+                for (var k = 0; k < frames; k++) {
+                    if (k == frames - 1) {
+                        str += String(temp[k]);
+                    } else {
+                        str += String(temp[k]) + "," + '&nbsp;';
+                    }
+                }
+                str += "]" + "<br>";
+            }
+        }
+
+        pageHits = pages.length - pageFaults;
+        str += "Total number of Page Faults = " + String(pageFaults);
+        str += "<br>Total number of Page Hits = " + String(pageHits);
+        pfpercent = (pageFaults / pages.length) * 100;
+        phpercent = 100 - pfpercent;
+        str += "<br>Page Faults Percentage : " + String(pfpercent.toFixed(5));
+        str += "<br>Page Hits Percentage : " + String(phpercent.toFixed(5)) + "<br>" + "<br>";
+        //return pageFaults;
+    }
+    function getresult() {
+        frames = document.getElementById("input1").value;
+        fifo(pages, frames);
+        document.getElementById("pFaults").innerHTML = str;
+    }
+
+</script>
