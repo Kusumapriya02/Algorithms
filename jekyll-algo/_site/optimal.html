@@ -1,0 +1,374 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Optimal</title>
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.2.0-beta1/dist/css/bootstrap.min.css" rel="stylesheet"
+        integrity="sha384-0evHe/X+R7YkIZDRvuzKMRqM+OrBnVFBL6DOitfPri4tjfHxaWutUpFmBp4vmVor" crossorigin="anonymous">
+
+    <!--<link rel="stylesheet" href="style.css">-->
+
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.2.0-beta1/dist/js/bootstrap.bundle.min.js"
+        integrity="sha384-pprn3073KE6tl6bjs2QrFaJGz5/SUsLqktiwsUTF55Jfv3qYSDhgCecCxMW52nD2"
+        crossorigin="anonymous"></script>
+    <style>
+        @import url('https://fonts.googleapis.com/css2?family=Poppins:wght@300&display=swap');
+
+        body {
+            margin: auto;
+            font-family: 'Poppins', sans-serif;
+        }
+
+        html {
+            scroll-behavior: smooth;
+        }
+
+        .nav_bar {
+            margin: auto;
+            background-color: #6A889C;
+            height: 3.5rem;
+            position: fixed;
+            width: 100%;
+        }
+
+        .nav_bar ul {
+            list-style: none;
+            display: flex;
+            align-items: center;
+            padding-top: 7px;
+            margin-top: 0.5rem;
+        }
+
+        .nav_bar ul li {
+            display: inline-block;
+            margin: 0 auto;
+        }
+
+        .nav_bar ul li a {
+            text-decoration: none;
+            color: white;
+        }
+
+        .nav_bar ul li a:hover {
+            color: black;
+            font-weight: 600;
+        }
+
+
+        .content {
+            padding-top: 3.5rem;
+            margin: 0rem 1rem;
+        }
+
+        .code,
+        .imple {
+            padding-top: 5rem;
+            margin-left: 1rem;
+
+        }
+
+        #gap2 {
+            padding: 0rem 1.5rem 0rem 1.5rem;
+        }
+
+        #gap3 {
+            padding-right: 4rem;
+        }
+
+        .buttons {
+            color: white;
+        }
+
+        #container1,
+        #container2,
+        #container3 {
+            font-size: 0.9rem;
+            font-weight: 600;
+        }
+
+        #container3>h6 {
+            font-weight: 600;
+        }
+
+        h6 {
+            font-weight: 600;
+        }
+
+        .name {
+            font-size: 20px;
+            text-decoration: underline;
+        }
+    </style>
+</head>
+
+<body>
+    <nav class="nav_bar">
+        <ul>
+            <li><a button type="button" class="buttons" id="gap1" onclick="content()">Description</a></li>
+            <li><a button type="button" class="buttons" id="gap2" onclick="imple()">Implementation</a></li>
+            <li><a button type="button" class="buttons" id="gap3" onclick="code()">Code</a></li>
+        </ul>
+    </nav>
+    <div id="content" class="content">
+        
+        <p class="name"><b>OPTIMAL PAGE REPLACEMENT</b></p>
+        <div id="container1">
+            <p>This algorithm replaces the page which will not be referred for so long in future. Although it can not be practically implementable but it can be used as a benchmark. Other algorithms are compared to this in terms of optimality. This decides which memory page is to be replaced. The process of replacement is sometimes called swap out or write to disk. It is done when the requested page is not found in the main memory.
+</p>
+        </div>
+
+        <!--p>class="name"><b>ALGORITHM</b></p>
+        <div id="container2">
+            <p>1. Push the first page in the array as per the memory demand.<br>
+2. Push the second page as per the memory demand.<br>
+3. Push the third page until the memory is full.<br>
+4. As the array is full, the page which is least recently used is replaced.<br>
+5. repeat step '4' until the page demand continues and until the processing is over.<br>
+6. Terminate the program.
+</p>
+        </div-->
+
+        <p class="name"><b>COMPLEXITY</b></p>
+        <div id="container2">
+            <p>The Complexity of LRU Page Replacement Algorithm is O(n*m)<br>
+where'n' is number of pages and 'm' is number of frames.
+</p>
+        </div>
+
+        <p class="name"><b>WORKING</b></p>
+        <div id="container3">
+            <p>Consider the page replacement string and number of frames as an example: pages = [ 7, 0, 1, 2,0, 3, 0, 4, 2, 3, 0, 3, 2] and 4 respectively.<br><br>
+<img src="https://i0.wp.com/technobyte.org/wp-content/uploads/2019/12/sym-1.jpg?ssl=1" style="width:100%;">
+<br><br>
+<li>Initially all the memory slots will be empty so [7, 0, 1, 2] will be allocated to the memory with 4 page-faults.</li><br>
+<li>As [0] is already there, there’s no page fault.</li><br>
+<li>Next in the string is [3] it’ll replace [7] as it’s not used for the longest period of time in the future, with one page fault.</li><br>
+<li>Again, 0 is already there, so no page fault.</li><br>
+<li>4 will replace 1 with one page fault.</li><br>
+<li>For the rest of the string, there will be no page fault as all the arriving pages are already there in the memory.</li>
+</p>
+        </div>
+
+    </div>
+
+    <div id="code" class="code" style="display:none;">
+        <pre><h6>function optimalPage(pg, pn, fn) {
+  var pfpercent, phpercent, fault;
+  var fr = new Array(fn);
+  var hit = 0, index = 0;
+  for (var i = 0; i < pn; i++) {
+    if (search(pg[i], fr)) {
+        hit++;
+        continue;
+    }
+    if (index < fn) {
+        fr[index++] = pg[i];
+    }else {
+        var j = predict(pg, fr, pn, i + 1);
+        fr[j] = pg[i];                            
+    }
+  }
+}
+function predict(pg, fr, pn, index) {
+  let res = -1;
+  var farthest = index;
+  var index;
+  for (var i = 0; i < fr.length; i++) {
+    for (var j = index; j < pn; j++) {
+      if (fr[i] == pg[j]) {
+        if (j > farthest) {
+          farthest = j;
+          res = i;
+        }
+        break;
+      }
+    }
+    if (j == pn) {
+        return i;
+    }
+  }
+  if (res == -1) {
+    return o;
+  } else {
+    return res;
+  }
+}
+</h6></pre>
+    </div>
+    </div>
+    <div id="imple" class="imple" style="display:none">
+        <div class="implementation">
+   
+    <div class="container">
+        <div class="row">
+            
+            <div class="col-md-4">
+                <h5>Enter input one by one: </h5>
+                <input type="number" class="form-control" id="input" placeholder="Enter a valid number:">
+            </div>
+        </div><br>
+        <button onclick="add()" class="btn btn-primary" id="add">Add</button><br><br>
+        <h6 id="every"></h6>
+        <div class="row">
+            
+            <div class="col-md-4">
+                <h5>Enter number of frames: </h5>
+                <input type="number" class="form-control" id="input1" placeholder="Enter a valid number:">
+            </div>
+        </div><br>
+        <h5>Click the below button to get result :</h5>
+        <button class="btn btn-primary" onclick="answer()">Submit</button><br><br>
+        <h6 id="result"></h6>
+    </div>
+</div>
+    <script type="text/javascript">
+        var input = document.getElementById("input");
+        input.addEventListener("keypress", function (event) {
+            if (event.key === "Enter") {
+                event.preventDefault();
+                document.getElementById("add").click();
+            }
+        });
+        var i = 0;
+        var str = "";
+        var pg = [];
+        function add() {
+            var val = document.getElementById("input").value;
+            pg[i] = parseInt(val);
+            document.getElementById("input").value = "";
+            i += 1;
+            document.getElementById("every").innerHTML = pg;
+        }
+
+        function answer() {
+            var pn = pg.length;
+            var fn = parseInt(document.getElementById("input1").value);
+            optimalPage(pg, pn, fn);
+        }
+
+        function search(key, fr) {
+            for (var i = 0; i < fr.length; i++) {
+                if (fr[i] == key) {
+                    return true;
+                }
+            }
+            return false;
+        }
+
+        function predict(pg, fr, pn, index) {
+            let res = -1;
+            var farthest = index;
+            var index;
+            for (var i = 0; i < fr.length; i++) {
+                for (var j = index; j < pn; j++) {
+                    if (fr[i] == pg[j]) {
+                        if (j > farthest) {
+                            farthest = j;
+                            res = i;
+                        }
+                        break;
+                    }
+                }
+                if (j == pn) {
+                    return i;
+                }
+            }
+            if (res == -1) {
+                return o;
+            } else {
+                return res;
+            }
+        }
+
+        function optimalPage(pg, pn, fn) {
+            var pfpercent;
+            var phpercent;
+            var fault;
+            var fr = new Array(fn);
+            var hit = 0;
+            var index = 0;
+            str += "The entered pages are" + '&nbsp;' + "[";
+            for (var i = 0; i < pn; i++) {
+                if (i == pn - 1) {
+                    str += String(pg[i]);
+                } else {
+                    str += String(pg[i]) + "," + '&nbsp;';
+                }
+            }
+            str += "]" + "<br>" + "The entered number of frames is " + String(fn) + "<br>" + "<br>";
+            for (var i = 0; i < pn; i++) {
+                if (search(pg[i], fr)) {
+                    hit++;
+                    continue;
+                }
+                if (index < fn) {
+                    fr[index++] = pg[i];
+                    str += "The page at which the page faults occurs is " + (i + 1) + "<br>";
+                    str += "The frame is" + '&nbsp;';
+                    str += "[";
+                    for (let k = 0; k < (fr.length) - 1; k++) {
+                        str += String(fr[k]) + "," + '&nbsp;';
+                    }
+                    str = str + fr[(fr.length) - 1];
+                    str += "]";
+                    str = str + "<br>" + "<br>";
+
+                } else {
+                    var j = predict(pg, fr, pn, i + 1);
+                    fr[j] = pg[i];
+                    str += "The page at which the page faults occurs is " + (i + 1) + "<br>";
+                    str += "The frame is" + '&nbsp;';
+                    str += "[";
+                    for (var k = 0; k < (fr.length) - 1; k++) {
+                        str += String(fr[k]) + "," + '&nbsp;';
+                    }
+                    str = str + fr[(fr.length) - 1];
+                    str += "]";
+                    str = str + "<br>" + "<br>";
+                }
+
+            }
+            fault = pn - hit;
+            str += "Total number of Page Faults = " + String(fault);
+            str += "<br>Total number of Page Hits = " + String(hit) + "<br>";
+            pfpercent = (fault / pn) * 100;
+            phpercent = 100 - pfpercent;
+            str += "<br>Page Faults Percentage : " + String(pfpercent.toFixed(5));
+            str += "<br>Page Hits Percentage : " + String(phpercent.toFixed(5)) + "<br>" + "<br>";
+            document.getElementById("result").innerHTML = str;
+        }
+    </script>
+    </div>
+    <script>
+         function code() {
+            var y = document.getElementsByClassName("code");
+            y[0].style.display = "block";
+            var z = document.getElementsByClassName("content");
+            z[0].style.display = "none";
+            var x = document.getElementsByClassName("imple");
+            x[0].style.display = "none";
+        }
+        function imple() {
+            var p = document.getElementsByClassName("imple");
+            p[0].style.display = "block";
+            var q = document.getElementsByClassName("content");
+            q[0].style.display = "none";
+            var r = document.getElementsByClassName("code");
+            r[0].style.display = "none";
+        }
+        function content() {
+            var a = document.getElementsByClassName("content");
+            a[0].style.display = "block";
+            var b = document.getElementsByClassName("imple");
+            b[0].style.display = "none";
+            var c = document.getElementsByClassName("code");
+            c[0].style.display = "none";
+        }
+    </script>
+
+</body>
+
+</html>

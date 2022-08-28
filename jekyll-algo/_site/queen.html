@@ -1,0 +1,336 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>N-Queens Problem</title>
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.2.0-beta1/dist/css/bootstrap.min.css" rel="stylesheet"
+        integrity="sha384-0evHe/X+R7YkIZDRvuzKMRqM+OrBnVFBL6DOitfPri4tjfHxaWutUpFmBp4vmVor" crossorigin="anonymous">
+
+    <!--<link rel="stylesheet" href="style.css">-->
+
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.2.0-beta1/dist/js/bootstrap.bundle.min.js"
+        integrity="sha384-pprn3073KE6tl6bjs2QrFaJGz5/SUsLqktiwsUTF55Jfv3qYSDhgCecCxMW52nD2"
+        crossorigin="anonymous"></script>
+    <style>
+        @import url('https://fonts.googleapis.com/css2?family=Poppins:wght@300&display=swap');
+
+        body {
+            margin: auto;
+            font-family: 'Poppins', sans-serif;
+        }
+
+        html {
+            scroll-behavior: smooth;
+        }
+
+        .nav_bar {
+            margin: auto;
+            background-color: #6A889C;
+            height: 3.5rem;
+            position: fixed;
+            width: 100%;
+        }
+
+        .nav_bar ul {
+            list-style: none;
+            display: flex;
+            align-items: center;
+            padding-top: 7px;
+            margin-top: 0.5rem;
+        }
+
+        .nav_bar ul li {
+            display: inline-block;
+            margin: 0 auto;
+        }
+
+        .nav_bar ul li a {
+            text-decoration: none;
+            color: white;
+        }
+
+        .nav_bar ul li a:hover {
+            color: black;
+            font-weight: 600;
+        }
+
+
+        .content {
+            padding-top: 3.5rem;
+            margin: 0rem 1rem;
+        }
+
+        .code,
+        .imple {
+            padding-top: 5rem;
+            margin-left: 1rem;
+
+        }
+
+        #gap2 {
+            padding: 0rem 1.5rem 0rem 1.5rem;
+        }
+
+        #gap3 {
+            padding-right: 4rem;
+        }
+
+        .buttons {
+            color: white;
+        }
+
+        #container1,
+        #container2,
+        #container3 {
+            font-size: 0.9rem;
+            font-weight: 600;
+        }
+
+        #container3>h6 {
+            font-weight: 600;
+        }
+
+        h6 {
+            font-weight: 600;
+        }
+
+        .name {
+            font-size: 20px;
+            text-decoration: underline;
+        }
+    </style>
+</head>
+
+<body>
+    <nav class="nav_bar">
+        <ul>
+            <li><a button type="button" class="buttons" id="gap1" onclick="content()">Description</a></li>
+            <li><a button type="button" class="buttons" id="gap2" onclick="imple()">Implementation</a></li>
+            <li><a button type="button" class="buttons" id="gap3" onclick="code()">Code</a></li>
+        </ul>
+    </nav>
+    <div id="content" class="content">
+        
+        <p class="name"><b>N-Queens Problem</b></p>
+        <div id="container1">
+            <p>This problem is to find an arrangement of N queens on a chess board, such that no queen can attack any other queens on the board. The chess queens can attack in any direction as horizontal, vertical, horizontal and diagonal way. A binary matrix is used to display the positions of N Queens, where no queens can attack other queens.
+</p>
+        </div>
+
+        <!--p>class="name"><b>ALGORITHM</b></p>
+        <div id="container2">
+            <p>isValid()
+  Begin
+    if there is a queen at the left of current col, then
+      return false
+    if there is a queen at the left upper diagonal, then
+      return false
+    if there is a queen at the left lower diagonal, then
+      return false;
+    return true //otherwise it is valid place
+  End
+solveNQUtil(board, col)
+  Begin
+    if all columns are filled, then
+      return true
+    for each row of the board, do
+      if isValid(board, i, col), then
+        set queen at place (i, col) in the board
+        if solveNQueen(board, col+1) = true, then
+          return true
+        otherwise remove queen from place (i, col) from board.
+    done
+    return false
+  End
+</p>
+        </div-->
+
+        <p class="name"><b>COMPLEXITY</b></p>
+        <div id="container2">
+            <p><h5>Time Complexity:</h5>
+The time Complexity of N-Queen problem is: O(N!) <br><br>
+<h5>Space Complexity:</h5>
+The space complexity of N-Queens problem is: O(N)
+</p>
+        </div>
+
+        <p class="name"><b>WORKING</b></p>
+        <div id="container3">
+            <p>It can be seen that for n =1, the problem has a trivial solution, and no solution exists for n =2 and n =3.<br> 
+So first we will consider the 4 queens problem and then generate it to n - queens problem.<br>
+Given a 4 x 4 chessboard and number the rows and column of the chessboard 1 through 4.<br>
+<img src="https://static.javatpoint.com/tutorial/daa/images/n-queens-problems.png" 
+style="width:25%; display:block; margin:1rem auto;">
+Since, we have to place 4 queens such as q1 q2 q3 and q4 on the chessboard, such that no two queens attack each other.<br>
+In such a conditional each queen must be placed on a different row, i.e., we put queen "i" on row "i."<br>
+Now, we place queen q1 in the very first acceptable position (1, 1). <br><br>
+Next, we put queen q2 so that both these queens do not attack each other.<br>
+We find that if we place q2 in column 1 and 2, then the dead end is encountered. <br><br>
+Thus the first acceptable position for q2 in column 3, i.e. (2, 3) but then no position is left for placing queen 'q3' safely.<br> 
+So we backtrack one step and place the queen 'q2' in (2, 4), the next best possible solution. <br>
+Then we obtain the position for placing 'q3' which is (3, 2). <br><br>
+But later this position also leads to a dead end, and no place is found where 'q4' can be placed safely. <br>
+Then we have to backtrack till 'q1' and place it to (1, 2) and then all other queens are placed safely by moving q2 to (2, 4), q3 to (3, 1) and q4 to (4, 3).<br><br>
+That is, we get the solution (2, 4, 1, 3). This is one possible solution for the 4-queens problem. <br>
+For another possible solution, the whole method is repeated for all partial solutions.<br> 
+The other solutions for 4 - queens problems is (3, 1, 4, 2) i.e.<br>
+<img src="https://static.javatpoint.com/tutorial/daa/images/n-queens-problems2.png"
+style="width:25%; display:block; margin:1rem auto;">
+The implicit tree for 4 - queen problem for a solution (2, 4, 1, 3) is as follows:<br>
+<img src="https://static.javatpoint.com/tutorial/daa/images/n-queens-problems3.png"
+style="width:35%; display:block; margin:0 auto;"><br>
+It can be seen that all the solutions to the 4 queens problem can be represented as 4 - tuples (x1, x2, x3, x4) where xi represents the column on which queen "qi" is placed.<br>
+In this way it can be done to all the another numbers.
+</p>
+        </div>
+
+    </div>
+
+    <div id="code" class="code" style="display:none;">
+        <pre><h6>function solveNQ(N) {
+    if (N <= 3) {
+        "Solution doesn't exist"
+    }
+    var board = new Array(N);
+    for (var i = 0; i < N; i++) {
+        board[i] = new Array(N);
+        for (var j = 0; j < N; j++) {
+            board[i][j] = 0;
+        }
+    }
+    if (solveNQUtil(board, 0) == false) {
+        return false;
+    }
+    return true;
+}
+function solveNQUtil(board, col) {
+    if (col >= N)
+        return true;
+    for (let i = 0; i < N; i++) {
+        if ((ld[i - col + N - 1] != 1 &&
+            rd[i + col] != 1) && cl[i] != 1) {
+            board[i][col] = 1;
+            ld[i - col + N - 1] =
+                rd[i + col] = cl[i] = 1;
+            if (solveNQUtil(board, col + 1))
+                return true;
+            board[i][col] = 0;
+            ld[i - col + N - 1] =
+                rd[i + col] = cl[i] = 0;
+        }
+    }
+    return false;
+};
+</h6></pre>
+    </div>
+    </div>
+    <div id="imple" class="imple" style="display:none">
+        <div class="implementation">
+   
+    <div class="container">
+        <div class="row">
+            
+            <div class="col-md-4">
+                <h5>Enter a valid number: </h5>
+                <input type="text" class="form-control" id="input1">
+            </div>
+        </div><br>
+        <h5>Click for answer:</h5>
+        <button class="btn btn-primary" onclick="solveNQ()">Submit</button><br><br>
+        <h6>
+            <div id="result"></div>
+        </h6>
+    </div>
+</div>
+<script type="text/javascript">
+
+    let ld = new Array(30);
+    let rd = new Array(30);
+    let cl = new Array(30);
+
+    function printSolution(board) {
+        var str = "";
+        str += "<br> The obtained matrix is:<br>";
+        for (var i = 0; i < N; i++) {
+            for (var j = 0; j < N; j++) {
+                str += String(board[i][j]);
+                str += " ";
+            }
+            str += "<br>";
+        }
+        document.getElementById("result").innerHTML = str;
+    }
+
+    function solveNQUtil(board, col) {
+        if (col >= N)
+            return true;
+        for (let i = 0; i < N; i++) {
+            if ((ld[i - col + N - 1] != 1 &&
+                rd[i + col] != 1) && cl[i] != 1) {
+                board[i][col] = 1;
+                ld[i - col + N - 1] =
+                    rd[i + col] = cl[i] = 1;
+                if (solveNQUtil(board, col + 1))
+                    return true;
+                board[i][col] = 0;
+                ld[i - col + N - 1] =
+                    rd[i + col] = cl[i] = 0;
+            }
+        }
+        return false;
+    }
+
+    function solveNQ() {
+        var val = document.getElementById("input1").value;
+        N = parseInt(val);
+        if (N <= 3) {
+            document.getElementById("result").innerHTML = "Solution doesn't exist";
+        }
+        var board = new Array(N);
+        for (var i = 0; i < N; i++) {
+            board[i] = new Array(N);
+            for (var j = 0; j < N; j++) {
+                board[i][j] = 0;
+            }
+        }
+        if (solveNQUtil(board, 0) == false) {
+            return false;
+        }
+        printSolution(board);
+        return true;
+    }
+</script>
+    </div>
+    <script>
+         function code() {
+            var y = document.getElementsByClassName("code");
+            y[0].style.display = "block";
+            var z = document.getElementsByClassName("content");
+            z[0].style.display = "none";
+            var x = document.getElementsByClassName("imple");
+            x[0].style.display = "none";
+        }
+        function imple() {
+            var p = document.getElementsByClassName("imple");
+            p[0].style.display = "block";
+            var q = document.getElementsByClassName("content");
+            q[0].style.display = "none";
+            var r = document.getElementsByClassName("code");
+            r[0].style.display = "none";
+        }
+        function content() {
+            var a = document.getElementsByClassName("content");
+            a[0].style.display = "block";
+            var b = document.getElementsByClassName("imple");
+            b[0].style.display = "none";
+            var c = document.getElementsByClassName("code");
+            c[0].style.display = "none";
+        }
+    </script>
+
+</body>
+
+</html>

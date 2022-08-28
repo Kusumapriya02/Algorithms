@@ -1,0 +1,107 @@
+--- 
+layout: default1 
+title: Tower of hanoi 
+ref_name: toh 
+--- 
+
+    <div class="implementation">
+        
+        <div class="container">
+            <div class="row">
+                <div class="col-md-4"></div>
+                <div class="col-md-4">
+                    <h5>Enter number of disks:</h5>
+                    <input type="number" class="form-control" id="input1"><br>
+                    <h5>Enter SOURCE rod:</h5>
+                    <input type="text" class="form-control" id="input2"><br>
+                    <h5>Enter DESTINATION rod:</h5>
+                    <input type="text" class="form-control" id="input3"><br>
+                    <h5>Enter VIA rod:</h5>
+                    <input type="text" class="form-control" id="input4"><br>
+                    <h5>Click the button below: </h5>
+                    <button onclick="getresult()" class="btn btn-primary">Click</button><br><br>
+                    <h6 id="array"></h6>
+                    <h6 id="result"></h6>
+                </div>
+            </div>
+        </div>
+    </div>
+        
+    <script type="text/javascript">
+        var input1 = document.getElementById("input1");
+        var input2 = document.getElementById("input2");
+        var input3 = document.getElementById("input3");
+        var input4 = document.getElementById("input4");
+        input1.addEventListener("keypress", function (event) {
+            if (event.key === "Enter") {
+                document.getElementById("add('input1')").click();
+            }
+        });
+        input2.addEventListener("keypress", function (event) {
+            if (event.key === "Enter") {
+                document.getElementById("add('input2')").click();
+            }
+        });
+        input3.addEventListener("keypress", function (event) {
+            if (event.key === "Enter") {
+                document.getElementById("add('input3')").click();
+            }
+        });
+        input4.addEventListener("keypress", function (event) {
+            if (event.key === "Enter") {
+                document.getElementById("add('input4')").click();
+            }
+        });
+        var str = "";
+        var i = 0;
+        var j = 0;
+        var k = 0;
+        var l = 0;
+        var n = 0;
+        var via = "";
+        var to = "";
+        var from = "";
+        function add(given_input) {
+            var val = document.getElementById(given_input).value;
+            if (given_input === 'input1') {
+                blockSize[i] = parseInt(val);
+                document.getElementById("every1").innerHTML = n;
+                i++;
+            } else if (given_input === 'input2') {
+                processSize[j] = parseInt(val);
+                document.getElementById("every2").innerHTML = from;
+                j++;
+            } else if (given_input === 'input3') {
+                processSize[k] = parseInt(val);
+                document.getElementById("every3").innerHTML = to;
+                k++;
+            } else if (given_input === 'input4') {
+                processSize[l] = parseInt(val);
+                document.getElementById("every4").innerHTML = via;
+                l++;
+            }
+            document.getElementById(given_input).value = "";
+        }
+
+        function towerOfHanoi(n, from, to, via) {
+            if (n == 0) {
+                return;
+            }
+            towerOfHanoi(n - 1, from, via, to);
+            str += "Move disk " + n + " from rod " + from + " to rod " + to;
+            str += "<br>";
+            towerOfHanoi(n - 1, via, to, from);
+            document.getElementById("result").innerHTML = str;
+        }
+
+        function getresult() {
+            n = document.getElementById("input1").value;
+            from = document.getElementById("input2").value;
+            to = document.getElementById("input3").value;
+            via = document.getElementById("input4").value;
+            towerOfHanoi(n, from, to, via);
+        }
+    </script>
+</body>
+
+</html>

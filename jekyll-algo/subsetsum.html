@@ -1,0 +1,122 @@
+---
+layout: default1
+title: Subset Sum
+ref_name: subsetsum
+---
+<div class="implementation">
+    
+    <div class="container">
+        <div class="row">
+            
+            <div class="col-md-4">
+                <h5>Enter input one by one: </h5>
+                <input type="number" class="form-control" id="input" placeholder="Enter a valid number:"><br>
+                <button class="btn btn-primary" id="add" onclick="add()">Add</button><br><br>
+                <h6>
+                    <div id="every"></div>
+                </h6>
+            </div>
+            
+            <div class="col-md-4">
+                <h5>Enter sum: </h5>
+                <input type="number" class="form-control" id="input1" placeholder="Enter a valid number:">
+            </div>
+        </div><br>
+        <h5>Click for Result:</h5>
+        <button class="btn btn-primary" onclick="answer()">Click</button><br><br>
+        <h6>
+            <div id="result"></div>
+        </h6>
+    </div>
+</div>
+<script type="text/javascript">
+    var input = document.getElementById("input");
+    input.addEventListener("keypress", function (event) {
+        if (event.key === "Enter") {
+            event.preventDefault();
+            document.getElementById("add").click();
+        }
+    });
+    var i = 0;
+    var arr = [];
+    function add() {
+        var val = document.getElementById("input").value;
+        arr[i] = parseInt(val);
+        document.getElementById("input").value = "";
+        i += 1;
+        document.getElementById("every").innerHTML = arr;
+    }
+
+    var dp = [];
+    var str = "";
+
+    function answer() {
+        var n = arr.length;
+        var sum = document.getElementById("input1").value;
+        printAllSubsets(arr, n, sum);
+        document.getElementById("result").innerHTML = str;
+    }
+
+
+    function printSubsetsRec(arr, i, sum, p) {
+        if (i === 0 && sum !== 0 && dp[0][sum] !== 0) {
+            p.push(arr[i]);
+            str += "[" + String(p) + "]";
+            str += "<br>";
+            p = [];
+            return;
+        }
+        if (i == 0 && sum == 0) {
+            str += "[";
+            str += String(p);
+            str += "]" + "<br>";
+            p = [];
+            return;
+        }
+        if (dp[i - 1][sum]) {
+            b = [...p];
+            printSubsetsRec(arr, i - 1, sum, b);
+        }
+        if (sum >= arr[i] && dp[i - 1][sum - arr[i]]) {
+            p.push(arr[i]);
+            printSubsetsRec(arr, i - 1, sum - arr[i], p);
+        }
+        return;
+    }
+    function printAllSubsets(arr, n, sum) {
+
+        if (n == 0 || sum < 0)
+            return;
+
+        for (let i = 0; i < n; i++) {
+            dp[i] = [];
+            for (let j = 0; j < sum + 1; j++)
+                dp[i].push(false);
+        }
+        for (let i = 0; i < n; i++)
+            dp[i][0] = true;
+
+        if (arr[0] <= sum)
+            dp[0][arr[0]] = true;
+
+        for (var i = 1; i < n; i++) {
+            for (let j = 0; j < sum + 1; j++) {
+                if (arr[i] <= j)
+                    dp[i][j] = (dp[i - 1][j] || dp[i - 1][j - arr[i]]);
+                else
+                    dp[i][j] = dp[i - 1][j];
+            }
+        }
+        if (dp[n - 1][sum] == false) {
+            str += "There are no subsets with sum " + String(sum);
+            return;
+        }
+        p = [];
+        str += "The subset/s of the given array with a sum equal to a given sum :<br>"
+        printSubsetsRec(arr, n - 1, sum, p);
+    }
+
+</script>
+</body>
+
+</html>

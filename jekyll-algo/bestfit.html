@@ -1,0 +1,126 @@
+---
+layout: default1
+title: Best Fit
+ref_name: bestfit
+---
+<div class="implementation">
+    
+    <div class="container">
+        <div class="row">
+            
+            <div class="col-md-4">
+                <h5>Enter block sizes one by one: </h5>
+                <input type="number" class="form-control" id="input1" placeholder="Enter a valid number:">
+            </div>
+        </div><br>
+        <button class="btn btn-primary" onclick="add('input1')">Add</button><br><br>
+        <h6>
+            <div id="every1"></div>
+        </h6>
+        <div class="row">
+            
+            <div class="col-md-4">
+                <h5>Enter process sizes one by one: </h5>
+                <input type="number" class="form-control" id="input2" placeholder="Enter a valid number:">
+            </div>
+        </div><br>
+        <button class="btn btn-primary" onclick="add('input2')">Add</button><br><br>
+        <h6>
+            <div id="every2"></div>
+        </h6>
+        <h5>Click for sorted array:</h5>
+        <button class="btn btn-primary" onclick="bestFit()">Sort</button><br><br>
+        <h6>
+            <div id="result"></div>
+        </h6>
+    </div>
+</div>
+<script type="text/javascript">
+    var input1 = document.getElementById("input1");
+    var input2 = document.getElementById("input2");
+    input1.addEventListener("keypress", function (event) {
+        if (event.key === "Enter") {
+            document.getElementById("add('input1')").click();
+        }
+    });
+    input2.addEventListener("keypress", function (event) {
+        if (event.key === "Enter") {
+            document.getElementById("add('input2')").click();
+        }
+    });
+    var i = 0;
+    var j = 0;
+    var blockSize = [];
+    var processSize = [];
+    function add(given_input) {
+        var val = document.getElementById(given_input).value;
+        if (given_input === 'input1') {
+            blockSize[i] = parseInt(val);
+            document.getElementById("every1").innerHTML = blockSize;
+            i++;
+        } else {
+            processSize[j] = parseInt(val);
+            document.getElementById("every2").innerHTML = processSize;
+            j++;
+        }
+        document.getElementById(given_input).value = "";
+    }
+
+
+    function bestFit() {
+
+        let m = blockSize.length;
+        let n = processSize.length;
+        var str = "";
+
+        const allocation = [];
+
+        for (let i = 0; i < allocation.length; i++)
+            allocation[i] = -1;
+
+        for (let i = 0; i < n; i++) {
+
+            let bestIdx = -1;
+            for (let j = 0; j < m; j++) {
+                if (blockSize[j] >= processSize[i]) {
+                    if (bestIdx == -1)
+                        bestIdx = j;
+                    else if (blockSize[bestIdx] > blockSize[j])
+                        bestIdx = j;
+                }
+            }
+
+
+            if (bestIdx != -1) {
+
+                allocation[i] = bestIdx;
+
+                blockSize[bestIdx] -= processSize[i];
+            }
+        }
+
+        str += "Process-No." + '&emsp;' + "Process-Size" + '&emsp;' + "Block-No.";
+        str += "<br>";
+        for (let i = 0; i < n; i++) {
+            let s = "Not Allocated"
+            if (allocation[i] > -1) {
+                str += (i + 1) + '&emsp;' + '&emsp;' + '&emsp;' + '&emsp;' + '&emsp;' + '&emsp;' + processSize[i] + '&emsp;' + '&emsp;' + '&emsp;' + '&emsp;' + '&emsp;' + (allocation[i] + 1);
+                str += "<br>";
+            } else {
+                str += (i + 1) + '&emsp;' + '&emsp;' + '&emsp;' + '&emsp;' + '&emsp;' + '&emsp;' + processSize[i] + '&emsp;' + '&emsp;' + '&emsp;' + '&emsp;' + '&emsp;' + "Not Allocated";
+                str += "<br>";
+            }
+        }
+        document.getElementById("result").innerHTML = str;
+    };
+
+
+
+
+
+
+
+
+
+
+</script>
