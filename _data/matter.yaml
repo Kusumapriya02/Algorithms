@@ -1668,12 +1668,7 @@ srtf:
     At time = 23, Process P3 will finish its execution.<br>
     <img src="https://media.geeksforgeeks.org/wp-content/uploads/20220427173554/UntitledDiagram3-660x69.jpg" style="display:block; margin-left:auto; margin-right:auto; width:90%;">
     <br>
-    Process<&emsp;>Completion<&nbsp;>Time<&emsp;>Turn<&nbsp;>Around<&nbsp;>Time<&emsp;>Waiting<&nbsp;>Time<br>
-    P1<&emsp;><&emsp;><&emsp;><&nbsp;>15<&emsp;><&emsp;><&emsp;><&emsp;><&nbsp;>15-2<&nbsp;>=<&nbsp;>13<&emsp;><&emsp;><&emsp;><&nbsp;>13-6<nbsp;>=<nbsp;>7<&emsp;><&emsp;><br>
-    P2<&emsp;><&emsp;><&emsp;><&nbsp;>07<&emsp;><&emsp;><&emsp;><&emsp;><&nbsp;>07-5<&nbsp;>=<&nbsp;>02<&emsp;><&emsp;><&emsp;>2-2<nbsp;>=<nbsp;>0<&emsp;><&emsp;><br>
-    P3<&emsp;><&emsp;><&emsp;><&nbsp;>23<&emsp;><&emsp;><&emsp;><&emsp;><&nbsp;>23-1<&nbsp;>=<&nbsp;>22<&emsp;><&emsp;><&emsp;><&nbsp;>22-8<nbsp;>=14<&emsp;><&emsp;><br>
-    P4<&emsp;><&emsp;><&emsp;><&nbsp;>03<&emsp;><&emsp;><&emsp;><&emsp;><&nbsp;>03-0<&nbsp;>=<&nbsp;>03<&emsp;><&emsp;><&emsp;>3-3<nbsp;>=<nbsp;>0<&emsp;><&emsp;><br>
-    P5<&emsp;><&emsp;><&emsp;><&nbsp;>10<&emsp;><&emsp;><&emsp;><&emsp;><&nbsp;>10-4<&nbsp;>=<&nbsp;>06<&emsp;><&emsp;><&emsp;>6-4<nbsp;>=<nbsp;>2<&emsp;><&emsp;><br>
+    
     Average Turn around time = (13 + 2 + 22 + 3 + 6)/5 = 9.2<br>
     Average waiting time = (7 + 0 + 14 + 0 + 2)/5 = 23/5 = 4.6<br>
   com_cont: |
