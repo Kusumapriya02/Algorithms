@@ -1656,30 +1656,30 @@ srtf:
     Burst Time=[6,2,8,3,4]<br>
     The Shortest Job First CPU Scheduling Algorithm will work on the basis of steps as mentioned below:<br>
     At time = 0, Process P4 arrives and starts executing.<br>
-    At time= 1, <br><&nbsp;>Process P3 arrives.<br><&nbsp;>But, as P4 has a shorter burst time. It will continue execution.<br><&nbsp;>Thus, P3 will wait till P4 gets executed.<br>
-    At time =2,<br><&nbsp;>Process P1 arrives with burst time = 6.<br><&nbsp;>As the burst time of P1 is more than that of P4.<br><&nbsp;>Thus, P4 will continue its execution.<br>
-    At time = 3,<br><&nbsp;>Process P4 will finish its execution.<br><&nbsp;>Then, the burst time of P3 and P1 is compared.<br><&nbsp;>Process P1 is executed because its burst time is less as compared to P3.<br>
-    At time = 4,<br><&nbsp;>Process P5 arrives.<br><&nbsp;>Then the burst time of P3, P5, and P1 is compared.<br><&nbsp;>Process P5 gets executed first among them because its burst time is lowest, and process P1 is preempted.<br>
-    At time = 5, <br><&nbsp;>Process P2 arrives.<br><&nbsp;>The burst time of all processes are compared, <br><&nbsp;>Process P2 gets executed as its burst time is lowest among all. <br><&nbsp;>Process P5 is preempted.<br>
-    At time = 6,<br><&nbsp;>Process P2 will keep executing.<br><&nbsp;>It will execute till time = 8 as the burst time of P2 is 2ms.<br>
-    At time=7, <br><&nbsp;>The process P2 finishes its execution.<br><&nbsp;>Then again the burst time of all remaining processes is compared.<br><&nbsp;>The Process P5 gets executed because its burst time is lesser than the others.<br>
-    At time = 10,<br><&nbsp;>The process P5 will finish its execution.<br><&nbsp;>Then the burst time of the remaining processes P1 and P3 is compared.<br><&nbsp;> Thus, process P1 is executed as its burst time is less than P3.<br>
-    At time = 15,<br><&nbsp;>The process P1 finishes its execution and P3 is the only process left.<br><&nbsp;>P3 will start executing.<br>
+    At time = 1, <br>&nbsp;&#8226;Process P3 arrives.<br>&nbsp;&#8226;But, as P4 has a shorter burst time. It will continue execution.<br>&nbsp;&#8226;Thus, P3 will wait till P4 gets executed.<br>
+    At time = 2,<br>&nbsp;&#8226;Process P1 arrives with burst time = 6.<br>&nbsp;&#8226;As the burst time of P1 is more than that of P4.<br>&nbsp;&#8226;Thus, P4 will continue its execution.<br>
+    At time = 3,<br>&nbsp;&#8226;Process P4 will finish its execution.<br>&nbsp;&#8226;Then, the burst time of P3 and P1 is compared.<br>&nbsp;&#8226;Process P1 is executed because its burst time is less as compared to P3.<br>
+    At time = 4,<br>&nbsp;&#8226;Process P5 arrives.<br>&nbsp;&#8226;Then the burst time of P3, P5, and P1 is compared.<br>&nbsp;&#8226;Process P5 gets executed first among them because its burst time is lowest, and process P1 is preempted.<br>
+    At time = 5, <br>&nbsp;&#8226;Process P2 arrives.<br>&nbsp;&#8226;The burst time of all processes are compared.<br>&nbsp;&#8226;Process P2 gets executed as its burst time is lowest among all. <br>&nbsp;&#8226;Process P5 is preempted.<br>
+    At time = 6,<br>&nbsp;&#8226;Process P2 will keep executing.<br>&nbsp;&#8226;It will execute till time = 8 as the burst time of P2 is 2ms.<br>
+    At time = 7, <br>&nbsp;&#8226;The process P2 finishes its execution.<br>&nbsp;&#8226;Then again the burst time of all remaining processes is compared.<br>&nbsp;&#8226;The Process P5 gets executed because its burst time is lesser than the others.<br>
+    At time = 10,<br>&nbsp;&#8226;The process P5 will finish its execution.<br>&nbsp;&#8226;Then the burst time of the remaining processes P1 and P3 is compared.<br>&nbsp;&#8226;Thus, process P1 is executed as its burst time is less than P3.<br>
+    At time = 15,<br>&nbsp;&#8226;The process P1 finishes its execution and P3 is the only process left.<br>&nbsp;&#8226;P3 will start executing.<br>
     At time = 23, Process P3 will finish its execution.<br>
     <img src="https://media.geeksforgeeks.org/wp-content/uploads/20220427173554/UntitledDiagram3-660x69.jpg" style="display:block; margin-left:auto; margin-right:auto; width:90%;">
     <br>
     Turn Around Time :<br> 
-    P1 : 15-2 = 13<br>
-    P2 : 7-5 = 2<br>
-    P3 : 23-1 = 22<br>
-    P4 : 3-0 = 3<br>
-    P5 : 10-4 = 6<br>
+    &emsp;P1 : 15-2 = 13<br>
+    &emsp;P2 : 7-5 = 2<br>
+    &emsp;P3 : 23-1 = 22<br>
+    &emsp;P4 : 3-0 = 3<br>
+    &emsp;P5 : 10-4 = 6<br>
     Waiting Time :<br> 
-    P1 : 13-6 = 7<br>
-    P2 : 2-2 = 0<br>
-    P3 : 22-8 = 14<br>
-    P4 : 3-3 = 0<br>
-    P5 : 6-4 = 2<br>
+    &emsp;P1 : 13-6 = 7<br>
+    &emsp;P2 : 2-2 = 0<br>
+    &emsp;P3 : 22-8 = 14<br>
+    &emsp;P4 : 3-3 = 0<br>
+    &emsp;P5 : 6-4 = 2<br>
     Average Turn around time = (13 + 2 + 22 + 3 + 6)/5 = 9.2<br>
     Average waiting time = (7 + 0 + 14 + 0 + 2)/5 = 23/5 = 4.6<br>
   com_cont: |
