@@ -1668,7 +1668,18 @@ srtf:
     At time = 23, Process P3 will finish its execution.<br>
     <img src="https://media.geeksforgeeks.org/wp-content/uploads/20220427173554/UntitledDiagram3-660x69.jpg" style="display:block; margin-left:auto; margin-right:auto; width:90%;">
     <br>
-    
+    Turn Around Time :<br> 
+    P1 : 15-2 = 13<br>
+    P2 : 7-5 = 2<br>
+    P3 : 23-1 = 22<br>
+    P4 : 3-0 = 3<br>
+    P5 : 10-4 = 6<br>
+    Waiting Time :<br> 
+    P1 : 13-6 = 7<br>
+    P2 : 2-2 = 0<br>
+    P3 : 22-8 = 14<br>
+    P4 : 3-3 = 0<br>
+    P5 : 6-4 = 2<br>
     Average Turn around time = (13 + 2 + 22 + 3 + 6)/5 = 9.2<br>
     Average waiting time = (7 + 0 + 14 + 0 + 2)/5 = 23/5 = 4.6<br>
   com_cont: |
