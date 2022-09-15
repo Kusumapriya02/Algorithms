@@ -1641,16 +1641,115 @@ rabinkarp:
         }
       }
     }
+srtf:
   
-    
+  head_name: SHORTEST REMAINING TIME FIRST SCHEDULING ALGORITHM
+  head_cont: >
+    The process with the smallest amount of time remaining until completion is selected to execute.
+    Since the currently executing process is the one with the shortest amount of time remaining by definition, 
+    and since that time should only reduce as execution progresses, 
+    processes will always run until they complete or a new process is added that requires a smaller amount of time.
+  working_cont: |
+    Consider the following table of arrival time and burst time for five processes P1, P2, P3, P4 and P5. <br>
+    Process=[P1,P2,P3,P4,P5]<br>
+    Arrival Time=[2,5,1,0,4]<br>
+    Burst Time=[6,2,8,3,4]<br>
+    The Shortest Job First CPU Scheduling Algorithm will work on the basis of steps as mentioned below:<br>
+    At time = 0, Process P4 arrives and starts executing.<br>
+    At time= 1, <br><&nbsp;>Process P3 arrives.<br><&nbsp;>But, as P4 has a shorter burst time. It will continue execution.<br><&nbsp;>Thus, P3 will wait till P4 gets executed.<br>
+    At time =2,<br><&nbsp;>Process P1 arrives with burst time = 6.<br><&nbsp;>As the burst time of P1 is more than that of P4.<br><&nbsp;>Thus, P4 will continue its execution.<br>
+    At time = 3,<br><&nbsp;>Process P4 will finish its execution.<br><&nbsp;>Then, the burst time of P3 and P1 is compared.<br><&nbsp;>Process P1 is executed because its burst time is less as compared to P3.<br>
+    At time = 4,<br><&nbsp;>Process P5 arrives.<br><&nbsp;>Then the burst time of P3, P5, and P1 is compared.<br><&nbsp;>Process P5 gets executed first among them because its burst time is lowest, and process P1 is preempted.<br>
+    At time = 5, <br><&nbsp;>Process P2 arrives.<br><&nbsp;>The burst time of all processes are compared, <br><&nbsp;>Process P2 gets executed as its burst time is lowest among all. <br><&nbsp;>Process P5 is preempted.<br>
+    At time = 6,<br><&nbsp;>Process P2 will keep executing.<br><&nbsp;>It will execute till time = 8 as the burst time of P2 is 2ms.<br>
+    At time=7, <br><&nbsp;>The process P2 finishes its execution.<br><&nbsp;>Then again the burst time of all remaining processes is compared.<br><&nbsp;>The Process P5 gets executed because its burst time is lesser than the others.<br>
+    At time = 10,<br><&nbsp;>The process P5 will finish its execution.<br><&nbsp;>Then the burst time of the remaining processes P1 and P3 is compared.<br><&nbsp;> Thus, process P1 is executed as its burst time is less than P3.<br>
+    At time = 15,<br><&nbsp;>The process P1 finishes its execution and P3 is the only process left.<br><&nbsp;>P3 will start executing.<br>
+    At time = 23, Process P3 will finish its execution.<br>
+    <img src="https://media.geeksforgeeks.org/wp-content/uploads/20220427173554/UntitledDiagram3-660x69.jpg" style="display:block; margin-left:auto; margin-right:auto; width:90%;">
+    <br>
+    Process<&emsp;>Completion<&nbsp;>Time<&emsp;>Turn<&nbsp;>Around<&nbsp;>Time<&emsp;>Waiting<&nbsp;>Time<br>
+    P1<&emsp;><&emsp;><&emsp;><&nbsp;>15<&emsp;><&emsp;><&emsp;><&emsp;><&nbsp;>15-2<&nbsp;>=<&nbsp;>13<&emsp;><&emsp;><&emsp;><&nbsp;>13-6<nbsp;>=<nbsp;>7<&emsp;><&emsp;><br>
+    P2<&emsp;><&emsp;><&emsp;><&nbsp;>07<&emsp;><&emsp;><&emsp;><&emsp;><&nbsp;>07-5<&nbsp;>=<&nbsp;>02<&emsp;><&emsp;><&emsp;>2-2<nbsp;>=<nbsp;>0<&emsp;><&emsp;><br>
+    P3<&emsp;><&emsp;><&emsp;><&nbsp;>23<&emsp;><&emsp;><&emsp;><&emsp;><&nbsp;>23-1<&nbsp;>=<&nbsp;>22<&emsp;><&emsp;><&emsp;><&nbsp;>22-8<nbsp;>=14<&emsp;><&emsp;><br>
+    P4<&emsp;><&emsp;><&emsp;><&nbsp;>03<&emsp;><&emsp;><&emsp;><&emsp;><&nbsp;>03-0<&nbsp;>=<&nbsp;>03<&emsp;><&emsp;><&emsp;>3-3<nbsp;>=<nbsp;>0<&emsp;><&emsp;><br>
+    P5<&emsp;><&emsp;><&emsp;><&nbsp;>10<&emsp;><&emsp;><&emsp;><&emsp;><&nbsp;>10-4<&nbsp;>=<&nbsp;>06<&emsp;><&emsp;><&emsp;>6-4<nbsp;>=<nbsp;>2<&emsp;><&emsp;><br>
+    Average Turn around time = (13 + 2 + 22 + 3 + 6)/5 = 9.2<br>
+    Average waiting time = (7 + 0 + 14 + 0 + 2)/5 = 23/5 = 4.6<br>
+  com_cont: |
+    Time Complexity: O(N)
+  code_cont: |
+    function findWaitingTime(art, bt, n, wt) {
+        let rt = new Array(n);
 
+        for (let i = 0; i < n; i++)
+            rt[i] = bt[i];
 
-    
+        let complete = 0, t = 0, minm = Number.MAX_VALUE;
+        let shortest = 0, finish_time;
+        let check = false;
 
+        while (complete != n) {
+            for (let j = 0; j < n; j++) {
+               if ((art[j] <= t) &&
+                    (rt[j] < minm) && rt[j] > 0) {
+                        minm = rt[j];
+                        shortest = j;
+                        check = true;
+                    }
+                }
 
-    
+            if (check == false) {
+                t++;
+                continue;
+            }
+            rt[shortest]--;
+            minm = rt[shortest];
+            if (minm == 0)
+                minm = Number.MAX_VALUE;
 
-      
+            if (rt[shortest] == 0) {
+
+                complete++;
+                check = false;
+                
+                finish_time = t + 1;
+                
+                wt[shortest] = finish_time -
+                        bt[shortest] -
+                        art[shortest];
+                if (wt[shortest] < 0)
+                    wt[shortest] = 0;
+                }
+                t++;
+            }
+        }
+
+        function findTurnAroundTime(art, bt, n, wt, tat) {
+            for (let i = 0; i < n; i++)
+                tat[i] = bt[i] + wt[i];
+        }
+
+        function findavgTime(art, bt, n) {
+            let wt = new Array(n), tat = new Array(n);
+            let total_wt = 0, total_tat = 0;
+
+            findWaitingTime(art, bt, n, wt);
+
+            findTurnAroundTime(art, bt, n, wt, tat);
+
+            var proc = new Array(n);
+            for (var i = 0; i < n; i++) {
+                proc[i] = new Array(4);
+                total_wt = total_wt + wt[i];
+                total_tat = total_tat + tat[i];
+                proc[i][0] = i + 1;
+                proc[i][1] = bt[i];
+                proc[i][2] = wt[i];
+                proc[i][3] = tat[i];
+            }
+         }
+
   
 
   
