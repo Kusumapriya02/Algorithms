@@ -839,7 +839,7 @@ subsetsum:
     Consider R-5. It has two scenarios:<br><br>
     Select the element 2 from the array. Since we are selecting 2 from the array so array arr would be empty, i.e., arr = " ". The sum would be 6-2 equals to 4 and the element 2 gets stored in the result array. The result[] = [3, 2].<br>
     Reject the element 2 from the array. Since we are rejecting 2 from the array so array arr would become empty. The sum would remain same as previous, i.e., 6 and the result array would be same as previous, i.e., {3}.<br><br>
-    <img src="https://static.javatpoint.com/tutorial/daa/images/subset-sum-problem8.png">
+    <img src="https://static.javatpoint.com/tutorial/daa/images/subset-sum-problem8.png" style="display:block; margin-left:auto; margin-right:auto;">
   com_cont: |
     The above solution may try all subsets of given set in worst case. <br>
     Therefore time complexity of the above solution is exponential.
