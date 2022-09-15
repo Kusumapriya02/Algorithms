@@ -664,7 +664,7 @@ quick:
     Now 70 is at its correct place. All elements smaller than 70 are before it and all elements greater than 70 are after it.<br><br>
     Since quick sort is a recursive function, we call the partition function again at left and right partitions.<br>
     Again call function at right part and swap 80 and 90.<br>
-    <img src="https://www.geeksforgeeks.org/wp-content/uploads/gq/2014/01/QuickSort2.png">
+    <img src="https://www.geeksforgeeks.org/wp-content/uploads/gq/2014/01/QuickSort2.png" style="display:block; margin-left:auto; margin-right:auto; width:90%;">
   com_cont: |
     <h5>Time Complexity:</h5>
     The time Complexity of Quick Sort Algorithm is:<br><br>
@@ -758,7 +758,7 @@ fifo:
     Now 2 comes, it is not available in memory so it replaces the oldest page slot i.e 4 —>1 Page Fault.<br>
     Now 1 comes, it is available in memory ->0 Page Fault.<br>
     So total page faults = 9.<br><br>
-    <img src="https://media.geeksforgeeks.org/wp-content/uploads/PageReplacement.png"> 
+    <img src="https://media.geeksforgeeks.org/wp-content/uploads/PageReplacement.png" style="display:block; margin-left:auto; margin-right:auto; width:90%;"> 
   com_cont: |
     The Complexity of LRU Page Replacement Algorithm is O(n*m)<br>
     where'n' is number of pages and 'm' is number of frames.
@@ -1347,7 +1347,7 @@ lrupage:
     
       Consider the reference string and number of frames as pages = [ 7, 0, 1, 2,
       0, 3, 0, 4, 2, 3, 0, 3, 2] and 4 respectively.<br><br>
-      <img src="https://i0.wp.com/technobyte.org/wp-content/uploads/2019/12/sym-1.jpg?ssl=1">
+      <img src="https://i0.wp.com/technobyte.org/wp-content/uploads/2019/12/sym-1.jpg?ssl=1" style="display:block; margin-left:auto; margin-right:auto; width:90%;">
       <br><br>
       <li>Initially all the memory slots will be empty so [7, 0, 1, 2] will be allocated to the memory
           with 4 page-faults.</li><br>
