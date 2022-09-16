@@ -19,11 +19,15 @@ ref_name: srtf
     <label for="input" class="form-label">Enter arrival time of processes: </label>
     <input class="number" id="input2" /><br>
     <button onclick="add('input2')" id="add2">Add</button><br><br>
+    <button onclick="del('input2')" id="del2">Delete</button><br><br>
+    <button onclick="cle('input2')" id="cle2">Clear</button><br><br>
     <p id="every2"></p>
 
     <label for="input" class="form-label">Enter burst time of processes: </label>
     <input class="number" id="input3" /><br>
     <button onclick="add('input3')" id="add3">Add</button><br><br>
+    <button onclick="del('input3')" id="del3">Delete</button><br><br>
+    <button onclick="cle('input3')" id="cle3">Clear</button><br><br>
     <p id="every3"></p>
 
     <button onclick="answer()">click</button><br><br>
@@ -82,6 +86,32 @@ ref_name: srtf
             j++;
         }
         document.getElementById(given_input).value = "";
+    }
+    
+    function del(given_input) {
+        if (given_input === 'input2') {
+            art.pop();
+            i -= 1;
+            document.getElementById("every2").innerHTML = art;
+        } else if (given_input === 'input3') {
+            bt.pop();
+            j -= 1;
+            document.getElementById("every3").innerHTML = bt;
+        }
+    }
+
+    function cle(given_input) {
+        if (given_input === 'input2') {
+            art.length = 0;
+            i = 0;
+            document.getElementById("every2").innerHTML = art;
+
+        } else if (given_input === 'input3') {
+            bt.length = 0;
+            j = 0;
+            document.getElementById("every3").innerHTML = bt;
+        }
+
     }
     function answer() {
         findavgTime(art, bt, n);
