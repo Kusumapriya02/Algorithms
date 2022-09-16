@@ -1685,76 +1685,102 @@ srtf:
   com_cont: |
     Time Complexity: O(N)
   code_cont: |
-    function findWaitingTime(art, bt, n, wt) {
+    function findWaitingTime( arrival,burst,n,wt)
+    {
         let rt = new Array(n);
-
+         
+        // Copy the burst time into rt[]
         for (let i = 0; i < n; i++)
-            rt[i] = bt[i];
-
+            rt[i] = burst[i];
+         
         let complete = 0, t = 0, minm = Number.MAX_VALUE;
         let shortest = 0, finish_time;
         let check = false;
-
+         
+        // Process until all processes gets
+        // completed
         while (complete != n) {
-            for (let j = 0; j < n; j++) {
-               if ((art[j] <= t) &&
-                    (rt[j] < minm) && rt[j] > 0) {
-                        minm = rt[j];
-                        shortest = j;
-                        check = true;
-                    }
+         
+            // Find process with minimum
+            // remaining time among the
+            // processes that arrives till the
+            // current time`
+            for (let j = 0; j < n; j++) 
+            {
+                if ((arrival[j] <= t) &&
+                  (rt[j] < minm) && rt[j] > 0) {
+                    minm = rt[j];
+                    shortest = j;
+                    check = true;
                 }
-
+            }
+         
             if (check == false) {
                 t++;
                 continue;
             }
+         
+            // Reduce remaining time by one
             rt[shortest]--;
+         
+            // Update minimum
             minm = rt[shortest];
             if (minm == 0)
                 minm = Number.MAX_VALUE;
-
+         
+            // If a process gets completely
+            // executed
             if (rt[shortest] == 0) {
-
+         
+                // Increment complete
                 complete++;
                 check = false;
-                
+         
+                // Find finish time of current
+                // process
                 finish_time = t + 1;
-                
+         
+                // Calculate waiting time
                 wt[shortest] = finish_time -
-                        bt[shortest] -
-                        art[shortest];
+                             burst[shortest] -
+                             arrival[shortest];
+         
                 if (wt[shortest] < 0)
                     wt[shortest] = 0;
-                }
-                t++;
             }
+            // Increment time
+            t++;
         }
-
-        function findTurnAroundTime(art, bt, n, wt, tat) {
-            for (let i = 0; i < n; i++)
-                tat[i] = bt[i] + wt[i];
+    }
+    function findTurnAroundTime(arrival,burst,n,wt,tat)
+    {
+     // calculating turnaround time by adding
+        // burst[i] + wt[i]
+        for (let i = 0; i < n; i++)
+            tat[i] = burst[i] + wt[i];
+    }
+    // Method to calculate average time
+    function findavgTime(arrival,burst,n)
+    {
+        let wt = new Array(n), tat = new Array(n);
+        let  total_wt = 0, total_tat = 0;
+         
+        // Function to find waiting time of all
+        // processes
+        findWaitingTime(arrival,burst, n, wt);
+         
+        // Function to find turn around time for
+        // all processes
+        findTurnAroundTime(arrival,burst, n, wt, tat);
+         
+        // Calculate total waiting time and
+        // total turnaround time
+        for (let i = 0; i < n; i++) {
+            total_wt = total_wt + wt[i];
+            total_tat = total_tat + tat[i];
         }
-
-        function findavgTime(art, bt, n) {
-            let wt = new Array(n), tat = new Array(n);
-            let total_wt = 0, total_tat = 0;
-
-            findWaitingTime(art, bt, n, wt);
-
-            findTurnAroundTime(art, bt, n, wt, tat);
-
-            var proc = new Array(n);
-            for (var i = 0; i < n; i++) {
-                proc[i] = new Array(4);
-                total_wt = total_wt + wt[i];
-                total_tat = total_tat + tat[i];
-                proc[i][0] = i + 1;
-                proc[i][1] = bt[i];
-                proc[i][2] = wt[i];
-                proc[i][3] = tat[i];
-            }
-         }
+    }
+  
 rr:
   head_name: ROUND ROBIN SCHEDULING ALGORITHM
   head_cont: >
