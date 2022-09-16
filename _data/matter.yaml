@@ -1651,21 +1651,21 @@ srtf:
     processes will always run until they complete or a new process is added that requires a smaller amount of time.
   working_cont: |
     Consider the following table of arrival time and burst time for five processes P1, P2, P3, P4 and P5. <br>
-    Process=[P1,P2,P3,P4,P5]<br>
-    Arrival Time=[2,5,1,0,4]<br>
-    Burst Time=[6,2,8,3,4]<br>
-    The Shortest Job First CPU Scheduling Algorithm will work on the basis of steps as mentioned below:<br>
-    At time = 0, Process P4 arrives and starts executing.<br>
-    At time = 1, <br>&nbsp;&#8226;Process P3 arrives.<br>&nbsp;&#8226;But, as P4 has a shorter burst time. It will continue execution.<br>&nbsp;&#8226;Thus, P3 will wait till P4 gets executed.<br>
-    At time = 2,<br>&nbsp;&#8226;Process P1 arrives with burst time = 6.<br>&nbsp;&#8226;As the burst time of P1 is more than that of P4.<br>&nbsp;&#8226;Thus, P4 will continue its execution.<br>
-    At time = 3,<br>&nbsp;&#8226;Process P4 will finish its execution.<br>&nbsp;&#8226;Then, the burst time of P3 and P1 is compared.<br>&nbsp;&#8226;Process P1 is executed because its burst time is less as compared to P3.<br>
-    At time = 4,<br>&nbsp;&#8226;Process P5 arrives.<br>&nbsp;&#8226;Then the burst time of P3, P5, and P1 is compared.<br>&nbsp;&#8226;Process P5 gets executed first among them because its burst time is lowest, and process P1 is preempted.<br>
-    At time = 5, <br>&nbsp;&#8226;Process P2 arrives.<br>&nbsp;&#8226;The burst time of all processes are compared.<br>&nbsp;&#8226;Process P2 gets executed as its burst time is lowest among all. <br>&nbsp;&#8226;Process P5 is preempted.<br>
-    At time = 6,<br>&nbsp;&#8226;Process P2 will keep executing.<br>&nbsp;&#8226;It will execute till time = 8 as the burst time of P2 is 2ms.<br>
-    At time = 7, <br>&nbsp;&#8226;The process P2 finishes its execution.<br>&nbsp;&#8226;Then again the burst time of all remaining processes is compared.<br>&nbsp;&#8226;The Process P5 gets executed because its burst time is lesser than the others.<br>
-    At time = 10,<br>&nbsp;&#8226;The process P5 will finish its execution.<br>&nbsp;&#8226;Then the burst time of the remaining processes P1 and P3 is compared.<br>&nbsp;&#8226;Thus, process P1 is executed as its burst time is less than P3.<br>
-    At time = 15,<br>&nbsp;&#8226;The process P1 finishes its execution and P3 is the only process left.<br>&nbsp;&#8226;P3 will start executing.<br>
-    At time = 23, Process P3 will finish its execution.<br>
+    Processes = [P1,P2,P3,P4,P5]<br>
+    Arrival Time = [2,5,1,0,4]<br>
+    Burst Time = [6,2,8,3,4]<br><br>
+    The Shortest Job First CPU Scheduling Algorithm will work on the basis of steps as mentioned below:<br><br>
+    At time = 0, Process P4 arrives and starts executing.<br><br>
+    At time = 1, <br>&emsp;&#8226;Process P3 arrives.<br>&emsp;&#8226;But, as P4 has a shorter burst time. It will continue execution.<br>&emsp;&#8226;Thus, P3 will wait till P4 gets executed.<br><br>
+    At time = 2,<br>&emsp;&#8226;Process P1 arrives with burst time = 6.<br>&emsp;&#8226;As the burst time of P1 is more than that of P4.<br>&emsp;&#8226;Thus, P4 will continue its execution.<br><br>
+    At time = 3,<br>&emsp;&#8226;Process P4 will finish its execution.<br>&emsp;&#8226;Then, the burst time of P3 and P1 is compared.<br>&emsp;&#8226;Process P1 is executed because its burst time is less as compared to P3.<br><br>
+    At time = 4,<br>&emsp;&#8226;Process P5 arrives.<br>&emsp;&#8226;Then the burst time of P3, P5, and P1 is compared.<br>&emsp;&#8226;Process P5 gets executed first among them because its burst time is lowest, and process P1 is preempted.<br><br>
+    At time = 5, <br>&emsp;&#8226;Process P2 arrives.<br>&emsp;&#8226;The burst time of all processes are compared.<br>&emsp;&#8226;Process P2 gets executed as its burst time is lowest among all. <br>&emsp;&#8226;Process P5 is preempted.<br><br>
+    At time = 6,<br>&emsp;&#8226;Process P2 will keep executing.<br>&emsp;&#8226;It will execute till time = 8 as the burst time of P2 is 2ms.<br><br>
+    At time = 7, <br>&emsp;&#8226;The process P2 finishes its execution.<br>&emsp;&#8226;Then again the burst time of all remaining processes is compared.<br>&emsp;&#8226;The Process P5 gets executed because its burst time is lesser than the others.<br><br>
+    At time = 10,<br>&emsp;&#8226;The process P5 will finish its execution.<br>&emsp;&#8226;Then the burst time of the remaining processes P1 and P3 is compared.<br>&emsp;&#8226;Thus, process P1 is executed as its burst time is less than P3.<br><br>
+    At time = 15,<br>&emsp;&#8226;The process P1 finishes its execution and P3 is the only process left.<br>&emsp;&#8226;P3 will start executing.<br><br>
+    At time = 23, Process P3 will finish its execution.<br><br>
     <img src="https://media.geeksforgeeks.org/wp-content/uploads/20220427173554/UntitledDiagram3-660x69.jpg" style="display:block; margin-left:auto; margin-right:auto; width:90%;">
     <br>
     Turn Around Time :<br> 
@@ -1755,11 +1755,110 @@ srtf:
                 proc[i][3] = tat[i];
             }
          }
+rr:
+  head_name: ROUND ROBIN SCHEDULING ALGORITHM
+  head_cont: >
+    In Round-robin scheduling, each ready task runs turn by turn only in a cyclic queue for a limited time which is popularly known as Time Quantum. 
+    This algorithm also offers starvation free execution of processes. Round robin is a pre-emptive algorithm.
+    The CPU is shifted to the next process after fixed interval time, i.e., after time quantum. However, the time quantum may differ OS to OS.
+    It is widely used scheduling method in traditional OS.
+  work_cont: |
+    Consider this following three processes
+    Processes = [P1, P2, P3, P4]<br><br>
+    Arrival Time = [0, 1, 2, 3]<br><br>
+    Burst Time = [10, 4, 5, 3]<br><br>
+    Time Quantam = 3<br><br>
+    The Round Robin CPU Scheduling Algorithm will work on the basis of steps as mentioned below:<br><br>
+    At time = 0,<br>&emsp;&#8226;The execution begins with process P1, which has burst time 10. <br>&emsp;&#8226;Here, every process executes for 3 seconds (Time Quantum Period).<br><br>
+    At time = 3,<br>&emsp;&#8226;Processes P2, P3 and P4 arrives in the ready queue.<br>&emsp;&#8226;The remaining execution time for P1 is 7 seconds(10-3 = 7).<br>&emsp;&#8226; P2 starts executing for time quantum period of time.<br><br>
+    At time = 6,<br>&emsp;&#8226;Process P2 executes for 3 secs since execution time is greater than 3 secs.<br>&emsp;&#8226;The remaining execution time for P2 is 1 second(4-3 = 1).<br>&emsp;&#8226;processes P3 and P4 are in waiting queue. P3 starts executing for time quantum period of time.<br><br>
+    At time = 9,<br>&emsp;&#8226;Process P3 also executes for 3 secs since execution time is greater than 3 secs.<br>&emsp;&#8226;The remaining execution time for P3 is 2 seconds(5-3 = 2).<br>&emsp;&#8226;Process P4 starts execution.<br><br>
+    At time = 12,<br>&emsp;&#8226;Process P4 completed execution.<br>&emsp;&#8226;Now one cycle is completed. P1, P2, P3 are still in the waiting queue waiting for their turn.<br>&emsp;&#8226;Process P1 starts executing.<br><br>
+    At time = 15,<br>&emsp;&#8226;Process P1 exexecutes for 3 secs since execution time is greater than 3 secs.<br>&emsp;&#8226;The remaining execution time for P1 is 4 seconds(7-3 = 4).<br>&emsp;&#8226;Process P2 starts execution.<br><br>
+    At time = 16,<br>&emsp;&#8226;Process P2 completes execution since remaining execution time of P2 is less than time quantum.<br>&emsp;&#8226;Process P3 starts execution.<br><br>
+    At time = 18,<br>&emsp;&#8226;Process P3 completes execution since remaining execution time of P3 is less than time quantum.<br>&emsp;&#8226;Now again a cycle is completed and process P1 starts execution.<br><br>
+    At time = 21,<br>&emsp;&#8226;Process P1 exexecutes for 3 secs since execution time is greater than 3 secs.<br>&emsp;&#8226;The remaining execution time for P1 is 1 second(-3 = 1).<br><br>
+    At time = 22,<br>&emsp;&#8226;Process P1 completed execution.<br><br>
+    Turn Around Time :<br> 
+    &emsp;P1 : 22-0 = 22<br>
+    &emsp;P2 : 16-1 = 15<br>
+    &emsp;P3 : 18-2 = 16<br>
+    &emsp;P4 : 12-3 = 9<br>
+    
+    Waiting Time :<br> 
+    &emsp;P1 : 22-10 = 12<br>
+    &emsp;P2 : 15-4 = 11<br>
+    &emsp;P3 : 16-5 = 11<br>
+    &emsp;P4 : 9-3 = 6<br>
+  code_cont: |
+    function findWaitingTime (processes, n, bt, wt, quantum) {
+        // Make a copy of burst times bt[] to store remaining
+        // burst times.
+        let rem_bt = new Array(n).fill(0);
+        for (let i = 0; i < n; i++)
+            rem_bt[i] = bt[i];
+        let t = 0; // Current time
+        // Keep traversing processes in round robin manner
+        // until all of them are not done.
+        while (1) {
+            let done = true;
+            // Traverse all processes one by one repeatedly
+            for (let i = 0; i < n; i++) {
+                // If burst time of a process is greater than 0
+                // then only need to process further
+                if (rem_bt[i] > 0) {
+                    done = false; // There is a pending process
+                    if (rem_bt[i] > quantum) {
+                        // Increase the value of t i.e. shows
+                        // how much time a process has been processed
+                        t += quantum;
+                        // Decrease the burst_time of current process
+                        // by quantum
+                        rem_bt[i] -= quantum;
+                    }
+                    // If burst time is smaller than or equal to
+                    // quantum. Last cycle for this process
+                    else {
+                        // Increase the value of t i.e. shows
+                        // how much time a process has been processed
+                        t = t + rem_bt[i];
 
-  
-
-  
-
+                        // Waiting time is current time minus time
+                        // used by this process
+                        wt[i] = t - bt[i];
+                         // As the process gets fully executed
+                        // make its remaining burst time = 0
+                        rem_bt[i] = 0;
+                    }
+                }
+            }
+            // If all processes are done
+            if (done == true)
+                break;
+        }
+    }
+    function findTurnAroundTime (processes, n, bt, wt, tat) {
+        // calculating turnaround time by adding
+        // bt[i] + wt[i]
+        for (let i = 0; i < n; i++)
+            tat[i] = bt[i] + wt[i];
+    }
+    function findavgTime (processes, n, bt, quantum) {
+        let wt = new Array(n).fill(0), tat = new Array(n).fill(0);
+        let total_wt = 0, total_tat = 0;
+        // Function to find waiting time of all processes
+        findWaitingTime(processes, n, bt, wt, quantum);
+        // Function to find turn around time for all processes
+        findTurnAroundTime(processes, n, bt, wt, tat);
+        // Calculate total waiting time and total turn
+        // around time
+        for (let i = 0; i < n; i++) {
+            total_wt = total_wt + wt[i];
+            total_tat = total_tat + tat[i];
+        }
+    }
+ 
+    
 
 
   
