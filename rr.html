@@ -1,0 +1,275 @@
+---
+title: RR SA
+layout: default1
+ref_name: rr
+---
+
+
+<div>
+    <label for="input" class="form-label">Enter number of processes: </label>
+    <input class="number" id="input1" /><br>
+    <button onclick="add('input1')" id="add1">Add</button><br><br>
+    <p id="every1"></p>
+
+    <label for="input" class="form-label">Enter the value of time quantum: </label>
+    <input class="number" id="input2" /><br>
+    <button onclick="add('input2')" id="add2">Add</button><br><br>
+    <p id="every2"></p>
+
+    <label for="input" class="form-label">Enter arrival time of processes: </label>
+    <input class="number" id="input3" /><br>
+    <button onclick="add('input3')" id="add3">Add</button><br><br>
+    <button onclick="del('input3')" id="del3">Delete</button><br><br>
+    <button onclick="cle('input3')" id="clr3">Clear</button><br><br>
+    <p id="every3"></p>
+
+    <label for="input" class="form-label">Enter burst time of processes: </label>
+    <input class="number" id="input4" /><br>
+    <button onclick="add('input4')" id="add4">Add</button><br><br>
+    <button onclick="del('input4')" id="del4">Delete</button><br><br>
+    <button onclick="cle('input4')" id="clr4">Clear</button><br><br>
+    <p id="every4"></p>
+
+    <button onclick="answer()">click</button><br><br>
+    <p id="rr"></p>
+
+</div>
+
+<table id="table" border="1" style="display:none;">
+    <tr id="ttr">
+        <th>Processes</th>
+        <th>Burst time</th>
+        <th>Waiting time</th>
+        <th>TurnAround time</th>
+    </tr>
+</table>
+<div id="result"></div>
+<script type="text/javascript">
+
+    var input1 = document.getElementById("input1");
+    var input2 = document.getElementById("input2");
+    var input3 = document.getElementById("input3");
+    var input4 = document.getElementById("input4");
+    input1.addEventListener("keypress", function (event) {
+        if (event.key === "Enter") {
+            document.getElementById("add1").click();
+        }
+    });
+    input2.addEventListener("keypress", function (event) {
+        if (event.key === "Enter") {
+            document.getElementById("add2").click();
+        }
+    });
+    input3.addEventListener("keypress", function (event) {
+        if (event.key === "Enter") {
+            document.getElementById("add3").click();
+        }
+    });
+    input4.addEventListener("keypress", function (event) {
+        if (event.key === "Enter") {
+            document.getElementById("add4").click();
+        }
+    });
+
+    var i = 0;
+    var j = 0;
+    const arrival = [];
+    const burst = [];
+
+    function add(given_input) {
+        var val = document.getElementById(given_input).value;
+        if (given_input === 'input1') {
+            n = parseInt(val);
+            document.getElementById("every1").innerHTML = n;
+        } else if (given_input === 'input2') {
+            tq = parseInt(val);
+            document.getElementById("every2").innerHTML = tq;
+        } else if (given_input === 'input3') {
+            arrival[i] = parseInt(val);
+            document.getElementById("every3").innerHTML = arrival;
+            i++;
+        } else if (given_input === 'input4') {
+            burst[j] = parseInt(val);
+            document.getElementById("every4").innerHTML = burst;
+            j++;
+        }
+        document.getElementById(given_input).value = "";
+
+    }
+    function del(given_input) {
+        if (given_input === 'input3') {
+            arrival.pop();
+            i -= 1;
+            document.getElementById("every3").innerHTML = arrival;
+        } else if (given_input === 'input4') {
+            burst.pop();
+            j -= 1;
+            document.getElementById("every4").innerHTML = burst;
+        }
+    }
+
+    function cle(given_input) {
+        if (given_input === 'input3') {
+            arrival.length = 0;
+            i = 0;
+            document.getElementById("every3").innerHTML = arrival;
+
+        } else if (given_input === 'input4') {
+            burst.length = 0;
+            j = 0;
+            document.getElementById("every4").innerHTML = burst;
+        }
+
+    }
+
+    function answer() {
+        roundrobin();
+        var a = document.getElementById('table');
+        if (a.style.display === "none") {
+            a.style.display = "inline-block";
+        }
+        else {
+            a.style.display = "none";
+        }
+    }
+
+    function queueUpdation(queue, timer, arrival, n, maxProccessIndex) {
+        let zeroIndex;
+        for (let i = 0; i < n; i++) {
+            if (queue[i] == 0) {
+                zeroIndex = i;
+                break;
+            }
+        }
+        queue[zeroIndex] = maxProccessIndex + 1;
+    }
+
+    function queueMaintainence(queue, n) {
+        for (let i = 0; (i < n - 1) && (queue[i + 1] != 0); i++) {
+            let temp = queue[i];
+            queue[i] = queue[i + 1];
+            queue[i + 1] = temp;
+        }
+    }
+
+    function checkNewArrival(timer, arrival, n, maxProccessIndex, queue) {
+        if (timer <= arrival[n - 1]) {
+            let newArrival = false;
+            for (let j = (maxProccessIndex + 1); j < n; j++) {
+                if (arrival[j] <= timer) {
+                    if (maxProccessIndex < j) {
+                        maxProccessIndex = j;
+                        newArrival = true;
+                    }
+                }
+            }
+            if (newArrival)
+                queueUpdation(queue, timer, arrival, n, maxProccessIndex);
+        }
+    }
+    function roundrobin() {
+
+        var str = "";
+        var wait_time;
+        var turnaround_time;
+        let timer = 0;
+        let maxProccessIndex = 0;
+        let avgWait = 0;
+        let avgTT = 0;
+        const wait = [];
+        const turn = [];
+        const queue = [];
+        const temp_burst = [];
+        const complete = [];
+
+        for (let i = 0; i < n; i++) {
+            temp_burst[i] = burst[i];
+        }
+
+        for (let i = 0; i < n; i++) {
+            complete[i] = false;
+            queue[i] = 0;
+        }
+        while (timer < arrival[0])
+            timer++;
+        queue[0] = 1;
+
+        while (true) {
+            let flag = true;
+            for (let i = 0; i < n; i++) {
+                if (temp_burst[i] != 0) {
+                    flag = false;
+                    break;
+                }
+            }
+            if (flag)
+                break;
+
+            for (let i = 0; (i < n) && (queue[i] != 0); i++) {
+                let ctr = 0;
+                while ((ctr < tq) && (temp_burst[queue[0] - 1] > 0)) {
+                    temp_burst[queue[0] - 1] -= 1;
+                    timer += 1;
+                    ctr++;
+                    checkNewArrival(timer, arrival, n, maxProccessIndex, queue);
+                }
+                if ((temp_burst[queue[0] - 1] == 0) && (complete[queue[0] - 1] == false)) {
+                    turn[queue[0] - 1] = timer;
+                    complete[queue[0] - 1] = true;
+                }
+                let idle = true;
+                if (queue[n - 1] == 0) {
+                    for (let i = 0; i < n && queue[i] != 0; i++) {
+                        if (complete[queue[i] - 1] == false) {
+                            idle = false;
+                        }
+                    }
+                }
+                else
+                    idle = false;
+
+                if (idle) {
+                    timer++;
+                    checkNewArrival(timer, arrival, n, maxProccessIndex, queue);
+                }
+                queueMaintainence(queue, n);
+            }
+        }
+
+        for (let i = 0; i < n; i++) {
+            turn[i] = turn[i] - arrival[i];
+            wait[i] = turn[i] - burst[i];
+        }
+
+        var proc = new Array(n);
+        var total_wt = 0; var total_tat = 0;
+        for (var i = 0; i < n; i++) {
+            proc[i] = new Array(4);
+            total_wt = total_wt + wait[i];
+            total_tat = total_tat + turn[i];
+            proc[i][0] = i + 1;
+            proc[i][1] = burst[i];
+            proc[i][2] = wait[i];
+            proc[i][3] = turn[i];
+        }
+
+        table = document.getElementById("table");
+        for (var i = 0; i < proc.length; i++) {
+            var newRow = table.insertRow(table.length);
+            for (var j = 0; j < proc[i].length; j++) {
+                var cell = newRow.insertCell(j);
+                cell.innerHTML = proc[i][j];
+            }
+
+        }
+        for (let i = 0; i < n; i++) {
+            avgWait += wait[i];
+            avgTT += turn[i];
+        }
+        wait_time = (avgWait / n);
+        turnaround_time = (avgTT / n);
+        str += "Average waiting time : " + wait_time.toFixed(5) + "<br>";
+        str += "Average turnaround time : " + turnaround_time.toFixed(5);
+        document.getElementById("result").innerHTML = str;
+    }
+</script>
