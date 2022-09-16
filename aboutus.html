@@ -1,0 +1,236 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+    <title>About Us Section</title>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="https://pro.fontawesome.com/releaes/v5.10.0/css/all.css">
+    <style>
+        @import url('hhtps://fonts.googleapis.com/css2?family=Poppins:wght@200;300;400&display=swap');
+
+        * {
+            margin: 0px;
+            padding: 0px;
+            box-sizing: border-box;
+            font-family: 'Poppins', sans-serif;
+            scroll-behavior: smooth;
+            overflow-x: hidden;
+        }
+
+        .section {
+            width: 100%;
+        }
+
+        .section .container {
+            width: 80%;
+            display: block;
+            margin: 0px auto;
+            padding: 50px 0px;
+        }
+
+        .container .title {
+            width: 100%;
+            text-align: center;
+            margin-bottom: 50px;
+        }
+
+        .container .title h1 {
+            text-transform: uppercase;
+            font-size: 35px;
+            color: #88941e;
+        }
+
+        .container .title h1::after {
+            content: "";
+            height: 5px;
+            width: 100px;
+            background-color: #c4d156;
+            border-radius: 25px;
+            display: block;
+            margin: auto;
+        }
+
+        .content {
+            text-align: center;
+            margin: 0 auto;
+            width: 55%;
+        }
+
+        .image-section {
+            width: 100%;
+            margin: 0 auto;
+            padding-top: 5%;
+            float: none;
+            margin-top: 20px;
+            /*float:right;
+        width:40%;*/
+        }
+
+        .image-section img {
+            width: 60%;
+            height: auto;
+            display: block;
+            margin: auto;
+            /*width:100%;
+        height:auto;*/
+        }
+
+        .content .article h3 {
+            color: #0d0000;
+            font-size: 15px
+        }
+
+        .content .article p {
+            margin-top: 20px;
+            font-size: 16px;
+            line-height: 1.5;
+            color: #333;
+        }
+
+        .content .article {
+            margin-top: 50px;
+        }
+
+        
+        #left #right #middle {
+            width: 100%;
+            display:block;
+        }
+        .column {
+            width: 100%;
+            height: 100%;
+            background-color: rgb(175, 239, 239);
+            margin: 2%;
+            padding-bottom: 2%;}
+
+        @media screen and (min-width:768px) {
+            .section .container {
+                width: 80%;
+                display: block;
+                margin: auto;
+            }
+
+            .content {
+                float: none;
+                width: 100%;
+                display: block;
+                margin: auto;
+            }
+
+            
+            .container .title h1 {
+                text-align: center;
+                font-size: 30px;
+            }
+
+            .column {
+                width: 100%;
+            }
+
+            .row {
+                display: flex;
+                justify-content: space-between;
+            }
+
+            .row:after {
+                content: "";
+                display: table;
+                clear: both;
+            }
+            .column {
+            width: 50%;
+            float: left;
+            height: 50%;
+            background-color: rgb(175, 239, 239);
+            margin: 2%;
+            padding-bottom: 2%;
+        }
+        }
+
+        .quote{
+            width: 100%;
+            height:100%;
+            margin: 2%;
+            padding-bottom: 2%;
+            padding-top: 2%;
+            background-color: rgb(240, 204, 225);
+            
+        }
+        .q{
+            width:100%;
+            text-align: center; 
+            margin-bottom:5%; 
+        }
+        .m{
+            width:100%;
+            text-align: center;
+            font-size:100%;
+        }
+        #ab{
+            padding-top: 5%;
+        }
+    </style>
+</head>
+
+<body>
+    <div class="section">
+        <div class="container">
+            <div class="title">
+                <h1>Our Mission</h1>
+            </div>
+            <div class="quote">
+                <h1 class="q">"Knowledge<br><br>is<br><br>power".</h1>
+                <p class="m">We welcome you to the platform where you can learn about different ALGORITHMS.<br><br>This platform has been designed for every student wishing to expand their knowledge.</p>
+                
+            </div>
+            <div class="title">
+                <h1 id="ab">About Us</h1>
+            </div>
+            <div class="row">
+                <div class="column" id="left">
+                    <div class="image-section">
+                        <img
+                            src="https://pixabay.com/get/g59d511e6fe63e8e5ff911ac815e5a3724859ddf2d4d872d9ecb9b9aad47ecaf094f7e765225732b36cb165b1a5a3bbb354fec9bccec33961b65b51a44270fde2a3c63575f4184f3079fc61b07dea57e6_640.png">
+                    </div>
+                    <div class="content">
+                        <div class="article">
+                            <h3>K. Kusuma Priya</h3>
+                            <p>A Computer Science student at Sri Venkateswara University.</p>
+                            <p>I worked on Backend part and code part of this website.</p>
+                        </div>
+                    </div>
+                </div>
+                <div class="column" id="middle">
+                    <div class="image-section">
+                        <img
+                            src="https://pixabay.com/get/g59d511e6fe63e8e5ff911ac815e5a3724859ddf2d4d872d9ecb9b9aad47ecaf094f7e765225732b36cb165b1a5a3bbb354fec9bccec33961b65b51a44270fde2a3c63575f4184f3079fc61b07dea57e6_640.png">
+                    </div>
+                    <div class="content">
+                        <div class="article">
+                            <h3>S. Danish Anjum</h3>
+                            <p>A Computer Science student at Sri Venkateswara University.</p>
+                            <p>I worked on JavaScript and implementation part of this website.</p>
+                        </div>
+                    </div>
+                </div>
+                <div class="column" id="right">
+                    <div class="image-section">
+                        <img
+                            src="https://pixabay.com/get/g59d511e6fe63e8e5ff911ac815e5a3724859ddf2d4d872d9ecb9b9aad47ecaf094f7e765225732b36cb165b1a5a3bbb354fec9bccec33961b65b51a44270fde2a3c63575f4184f3079fc61b07dea57e6_640.png">
+                    </div>
+                    <div class="content">
+                        <div class="article">
+                            <h3>T. Bhanusree</h3>
+                            <p>A Computer Science student at Sri Venkateswara University.</p>
+                            <p>I worked on CSS part and styling of this website.</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+        </div>
+    </div>
+</body>
+
+</html>
