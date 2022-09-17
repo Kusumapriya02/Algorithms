@@ -12,9 +12,11 @@ ref_name: hamil
             <div class="col-md-4">
                 <h5>Enter number of vertices:</h5>
                 <input type="number" class="form-control" id="input1"><br>
-                <h5>Enter input one by one: </h5>
+                <h5>Enter adjacency matrix : </h5>
                 <input type="number" class="form-control" id="input" placeholder="Enter a valid number:">
-                <br><button onclick="add()" class="btn btn-primary" id="add">Add</button><br><br>
+                <button class="btn btn-primary" id="add" onclick="add()">Add</button>
+                <button class="btn btn-primary" id="add" onclick="del()">Delete</button>
+                <button class="btn btn-primary" id="add" onclick="cle()">Clear</button><br><br>
                 <h6 id="every"></h6>
                 <h5>Click the button below: </h5>
                 <button onclick="answer()" class="btn btn-primary">Click</button><br><br>
@@ -42,6 +44,17 @@ ref_name: hamil
         i += 1;
         document.getElementById("every").innerHTML = arr;
     }
+    function del() {
+        arr.pop();
+        i -= 1;
+        document.getElementById("every").innerHTML = arr;
+    }
+    function cle() {
+        arr.length = 0;
+        i = 0;
+        document.getElementById("every").innerHTML = arr;
+    }
+    
     var str = "";
     function answer() {
         var n = document.getElementById("input1").value;
