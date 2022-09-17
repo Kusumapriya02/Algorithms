@@ -13,9 +13,11 @@ ref_name: bestfit
                 <input type="number" class="form-control" id="input1" placeholder="Enter a valid number:">
             </div>
         </div><br>
-        <button class="btn btn-primary" onclick="add('input1')">Add</button><br><br>
-        <button class="btn btn-primary" id="add" onclick="del1()">Delete</button>
-        <button class="btn btn-primary" id="add" onclick="cle1()">Clear</button><br><br>
+        <input class="number" id="input1" /><br>
+        <button onclick="add('input1')" class="btn btn-primary" id="add1">Add</button>
+       <button class="btn btn-primary" id="del1" onclick="del('input1')">Delete</button>
+
+        <button class="btn btn-primary" id="cle1" onclick="cle('input1')">Clear</button><br><br>
         <h6>
             <div id="every1"></div>
         </h6>
@@ -26,9 +28,11 @@ ref_name: bestfit
                 <input type="number" class="form-control" id="input2" placeholder="Enter a valid number:">
             </div>
         </div><br>
-        <button class="btn btn-primary" onclick="add('input2')">Add</button><br><br>
-        <button class="btn btn-primary" id="add" onclick="del2()">Delete</button>
-        <button class="btn btn-primary" id="add" onclick="cle2()">Clear</button><br><br>
+        <input class="number" id="input2" /><br>
+        <button onclick="add('input2')" class="btn btn-primary" id="add2">Add</button>
+       <button class="btn btn-primary" id="del2" onclick="del('input2')">Delete</button>
+
+        <button class="btn btn-primary" id="cle2" onclick="cle('input2')">Clear</button><br><br>
         <h6>
             <div id="every2"></div>
         </h6>
@@ -69,34 +73,30 @@ ref_name: bestfit
         }
         document.getElementById(given_input).value = "";
     }
-    function del1() {
-
-        blockSize.pop();
-
-        i -= 1;
-
-        document.getElementById("every1").innerHTML = blockSize;
-
+    function del(given_input) {
+        if (given_input === 'input1') {
+            blockSize.pop();
+            i -= 1;
+            document.getElementById("every1").innerHTML = blockSize;
+        } else if (given_input === 'input2') {
+            processSize.pop();
+            j -= 1;
+            document.getElementById("every2").innerHTML = processSize;
+        }
     }
 
-    function cle1() {
+    function cle(given_input) {
+        if (given_input === 'input1') {
+            blockSize.length = 0;
+            i = 0;
+            document.getElementById("every1").innerHTML = blockSize;
 
-        blockSize.length = 0;
+        } else if (given_input === 'input2') {
+            processSize.length = 0;
+            j = 0;
+            document.getElementById("every2").innerHTML = processSize;
+        }
 
-        i = 0;
-
-        document.getElementById("every1").innerHTML = blockSize;
-
-    }
-    function del2() {
-        processSize.pop();
-        i -= 1;
-        document.getElementById("every2").innerHTML = processSize;
-    }
-    function cle2() {
-        processSize.length = 0;
-        i = 0;
-        document.getElementById("every2").innerHTML = processSize;
     }
 
 
