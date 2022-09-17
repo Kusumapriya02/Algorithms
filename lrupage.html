@@ -15,7 +15,9 @@ ref_name: lrupage
                 <input type="number" class="form-control" id="input" placeholder="Enter a valid number:">
             </div>
         </div><br>
-        <button onclick="add()" class="btn btn-primary" id="add">Add</button><br><br>
+        <button class="btn btn-primary" id="add" onclick="add()">Add</button>
+        <button class="btn btn-primary" id="add" onclick="del()">Delete</button>
+        <button class="btn btn-primary" id="add" onclick="cle()">Clear</button><br><br>
         <h6 id="every"></h6>
         <div class="row">
 
@@ -47,6 +49,16 @@ ref_name: lrupage
         pages[i] = parseInt(val);
         document.getElementById("input").value = "";
         i += 1;
+        document.getElementById("every").innerHTML = pages;
+    }
+    function del() {
+        pages.pop();
+        i -= 1;
+        document.getElementById("every").innerHTML = pages;
+    }
+    function cle() {
+        pages.length = 0;
+        i = 0;
         document.getElementById("every").innerHTML = pages;
     }
 
