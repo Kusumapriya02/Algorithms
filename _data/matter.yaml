@@ -1788,7 +1788,7 @@ rr:
     This algorithm also offers starvation free execution of processes. Round robin is a pre-emptive algorithm.
     The CPU is shifted to the next process after fixed interval time, i.e., after time quantum. However, the time quantum may differ OS to OS.
     It is widely used scheduling method in traditional OS.
-  work_cont: |
+  working_cont: |
     Consider this following three processes
     Processes = [P1, P2, P3, P4]<br><br>
     Arrival Time = [0, 1, 2, 3]<br><br>
@@ -1883,7 +1883,91 @@ rr:
             total_tat = total_tat + tat[i];
         }
     }
- 
+
+fcfs:
+  head_name: FIRST COME FIRST SERVE SCHEDULING ALGORITHM
+  head_cont: >
+    As the name suggests, the process which arrives first, gets executed first, or we can say that the process which requests the CPU first, gets the CPU allocated first.
+    First Come First Serve, is just like FIFO(First in First out) Queue data structure, where a new process enters through the tail of the queue, 
+    and the scheduler selects process from the head of the queue.A perfect real life example of FCFS scheduling is buying tickets at ticket counter.
+  working_cont: |
+    Consider this following four processes
+    Processes = [P1, P2, P3, P4]<br><br>
+    Arrival Time = [0, 0, 0, 0]<br><br>
+    Burst Time = [21, 3, 6, 2]<br><br>
+    &#8226;First, the CPU starts execution with process P1, so waiting time for P1 is 0.<br>
+    &#8226;Since the burst time for process P1 is 21ms, the process P1 takes 21ms for completion, hence waiting time for P2 is 21ms.<br>
+    &#8226;Now, the waiting time for process P3 will be execution time of P1 + execution time for P2, which will be (21 + 3) ms = 24 ms.<br>
+    &#8226;Similarly, the waiting time for process P4 will be the sum of execution times(i.e., Burst times) of P1, P2 and P3 i.e., 30ms.<br><br>
+    Turn Around Time :<br> 
+    &emsp;P1 : 21-0 = 21<br>
+    &emsp;P2 : 24-0 = 24<br>
+    &emsp;P3 : 30-0 = 30<br>
+    &emsp;P4 : 32-0 = 32<br>
+    
+    Waiting Time :<br> 
+    &emsp;P1 : 21-21 = 0<br>
+    &emsp;P2 : 24-3 = 21<br>
+    &emsp;P3 : 30-6 = 24<br>
+    &emsp;P4 : 32-2 = 30<br>
+  code_cont: |
+    function findWaitingTime(processes , n , bt , wt , at)
+    {
+       var service_time = Array.from({length: n}, (_, i) => 0);
+       service_time[0] = at[0];
+       wt[0] = 0;
+       // calculating waiting time
+       for (var i = 1; i < n ; i++)
+       {
+         //representing wasted time in queue
+         var wasted=0;
+         // Add burst time of previous processes
+         service_time[i] = service_time[i-1] + bt[i-1];
+         // Find waiting time for current process =
+         // sum - at[i]
+         wt[i] = service_time[i] - at[i];
+         // If waiting time for a process is in negative
+         // that means it is already in the ready queue
+         // before CPU becomes idle so its waiting time is 0
+         // wasted time is basically time for process to
+         // wait after a process is over
+         if (wt[i] < 0) {
+            wasted = Math.abs(wt[i]);
+            wt[i] = 0;
+         }
+         // Add wasted time
+         service_time[i] = service_time[i] + wasted;
+       }
+    }
+    // Function to calculate turn around time
+    function findTurnAroundTime(processes , n , bt, wt , tat)
+    {
+        // Calculating turnaround time by adding bt[i] + wt[i]
+        for (var i = 0; i < n ; i++)
+          tat[i] = bt[i] + wt[i];
+    }
+    // Function to calculate average waiting and turn-around
+    // times.
+    function findavgTime(processes , n , bt , at)
+    {
+        var wt = Array.from({length: n}, (_, i) => 0.0);
+        var tat = Array.from({length: n}, (_, i) => 0.0);
+        // Function to find waiting time of all processes
+        findWaitingTime(processes, n, bt, wt, at);
+        // Function to find turn around time for all processes
+        findTurnAroundTime(processes, n, bt, wt, tat);
+        for (var i = 0 ; i < n ; i++)
+        {
+            total_wt = total_wt + wt[i];
+            total_tat = total_tat + tat[i];
+        }
+    }
+  
+    
+    
+    
+    
+    
     
 
 
