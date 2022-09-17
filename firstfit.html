@@ -25,6 +25,9 @@ ref_name: firstfit
             </div>
         </div><br>
         <button onclick="add('input2')" class="btn btn-primary" id="add()">Add</button><br><br>
+       <button class="btn btn-primary" id="add" onclick="del()">Delete</button>
+
+        <button class="btn btn-primary" id="add" onclick="cle()">Clear</button><br><br>
         <h6 id="every2"></h6>
         <h5>Click the below button to get result :</h5>
         <button class="btn btn-primary" onclick="firstFit()">Submit</button><br><br>
@@ -64,6 +67,36 @@ ref_name: firstfit
         }
         document.getElementById(given_input).value = "";
     }
+   function del1() {
+
+        blockSize.pop();
+
+        i -= 1;
+
+        document.getElementById("every1").innerHTML = blockSize;
+
+    }
+
+    function cle1() {
+
+        blockSize.length = 0;
+
+        i = 0;
+
+        document.getElementById("every1").innerHTML = blockSize;
+
+    }
+    function del2() {
+        processSize.pop();
+        i -= 1;
+        document.getElementById("every2").innerHTML = processSize;
+    }
+    function cle2() {
+        processSize.length = 0;
+        i = 0;
+        document.getElementById("every2").innerHTML = processSize;
+    }
+
 
     function firstFit() {
         var str = "";
