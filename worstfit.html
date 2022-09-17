@@ -14,8 +14,8 @@ ref_name: worstfit
             </div>
         </div><br>
         <button class="btn btn-primary" onclick="add('input1')">Add</button><br><br>
-       <button class="btn btn-primary" id="add" onclick="del()">Delete</button>
-        <button class="btn btn-primary" id="add" onclick="cle()">Clear</button><br><br>
+       <button class="btn btn-primary" id="add" onclick="del1()">Delete</button>
+        <button class="btn btn-primary" id="add" onclick="cle1()">Clear</button><br><br>
         <h6>
             <div id="every1"></div>
         </h6>
@@ -27,6 +27,8 @@ ref_name: worstfit
             </div>
         </div><br>
         <button class="btn btn-primary" onclick="add('input2')">Add</button><br><br>
+       <button class="btn btn-primary" id="add" onclick="del2()">Delete</button>
+        <button class="btn btn-primary" id="add" onclick="cle2()">Clear</button><br><br>
         <h6>
             <div id="every2"></div>
         </h6>
@@ -67,6 +69,35 @@ ref_name: worstfit
             j++;
         }
         document.getElementById(given_input).value = "";
+    }
+   function del1() {
+
+        blockSize.pop();
+
+        i -= 1;
+
+        document.getElementById("every1").innerHTML = blockSize;
+
+    }
+
+    function cle1() {
+
+        blockSize.length = 0;
+
+        i = 0;
+
+        document.getElementById("every1").innerHTML = blockSize;
+
+    }
+    function del2() {
+        processSize.pop();
+        i -= 1;
+        document.getElementById("every2").innerHTML = processSize;
+    }
+    function cle2() {
+        processSize.length = 0;
+        i = 0;
+        document.getElementById("every2").innerHTML = processSize;
     }
 
 
