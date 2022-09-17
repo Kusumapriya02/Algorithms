@@ -14,8 +14,8 @@ ref_name: bestfit
             </div>
         </div><br>
         <button class="btn btn-primary" onclick="add('input1')">Add</button><br><br>
-        <button class="btn btn-primary" id="add" onclick="del()">Delete</button>
-        <button class="btn btn-primary" id="add" onclick="cle()">Clear</button><br><br>
+        <button class="btn btn-primary" id="add" onclick="del1()">Delete</button>
+        <button class="btn btn-primary" id="add" onclick="cle1()">Clear</button><br><br>
         <h6>
             <div id="every1"></div>
         </h6>
@@ -27,8 +27,8 @@ ref_name: bestfit
             </div>
         </div><br>
         <button class="btn btn-primary" onclick="add('input2')">Add</button><br><br>
-        <button class="btn btn-primary" id="add" onclick="del()">Delete</button>
-        <button class="btn btn-primary" id="add" onclick="cle()">Clear</button><br><br>
+        <button class="btn btn-primary" id="add" onclick="del2()">Delete</button>
+        <button class="btn btn-primary" id="add" onclick="cle2()">Clear</button><br><br>
         <h6>
             <div id="every2"></div>
         </h6>
@@ -69,24 +69,34 @@ ref_name: bestfit
         }
         document.getElementById(given_input).value = "";
     }
-    function del() {
+    function del1() {
 
-        arr.pop();
+        blockSize.pop();
 
         i -= 1;
 
-        document.getElementById("every").innerHTML = arr;
+        document.getElementById("every1").innerHTML = blockSize;
 
     }
 
-    function cle() {
+    function cle1() {
 
-        arr.length = 0;
+        blockSize.length = 0;
 
         i = 0;
 
-        document.getElementById("every").innerHTML = arr;
+        document.getElementById("every1").innerHTML = blockSize;
 
+    }
+    function del2() {
+        processSize.pop();
+        i -= 1;
+        document.getElementById("every2").innerHTML = processSize;
+    }
+    function cle2() {
+        processSize.length = 0;
+        i = 0;
+        document.getElementById("every2").innerHTML = processSize;
     }
 
 
