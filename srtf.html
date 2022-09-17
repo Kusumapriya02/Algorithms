@@ -33,8 +33,6 @@ ref_name: srtf
     <button onclick="answer()">click</button><br><br>
 
 </div>
-<div id="result"></div>
-
 <table id="table" border="1" style="display:none;">
     <tr id="ttr">
         <th>Processes</th>
@@ -43,6 +41,7 @@ ref_name: srtf
         <th>TurnAround time</th>
     </tr>
 </table>
+<div id="result"></div>
 <script type="text/javascript">
 
     var input1 = document.getElementById("input1");
@@ -184,8 +183,11 @@ ref_name: srtf
     }
 
     function findavgTime(art, bt, n) {
+        var str = "";
         let wt = new Array(n), tat = new Array(n);
         let total_wt = 0, total_tat = 0;
+        var wait_time; 
+        var turnaround_time;
 
         findWaitingTime(art, bt, n, wt);
 
@@ -211,6 +213,11 @@ ref_name: srtf
             }
 
         }
+        wait_time = (total_wt / n);
+        turnaround_time = (total_tat / n);
+        str += "Average waiting time : " + wait_time.toFixed(5) + "<br>";
+        str += "Average turnaround time : " + turnaround_time.toFixed(5);
+        document.getElementById("result").innerHTML = str;
 
     }
 
