@@ -1,0 +1,203 @@
+---
+title: FCFS SA
+layout: default1
+ref_name: fcfs
+---
+
+<style>
+    th, td{
+        border: 1px solid #000000;
+        padding: 10px;
+    }
+</style>
+
+<div>
+    <label>(Non-Preemptive)</label><br><br>
+    <label for="input" class="form-label">Enter number of processes: </label>
+    <input class="number" id="input1" /><br>
+    <button onclick="add('input1')" id="add1">Add</button><br><br>
+    <p id="every1"></p>
+
+    <label for="input" class="form-label">Enter arrival time of processes: </label>
+    <input class="number" id="input2" /><br>
+    <button onclick="add('input2')" id="add2">Add</button>
+    <button onclick="del('input2')" id="del2">Delete</button>
+    <button onclick="cle('input2')" id="clr2">Clear</button><br><br>
+    <p id="every2"></p>
+
+    <label for="input" class="form-label">Enter burst time of processes: </label>
+    <input class="number" id="input3" /><br>
+    <button onclick="add('input3')" id="add3">Add</button>
+    <button onclick="del('input3')" id="del3">Delete</button>
+    <button onclick="cle('input3')" id="clr3">Clear</button><br><br>
+    <p id="every3"></p>
+
+    <button onclick="answer()">click</button><br><br>
+
+</div>
+<div id="result"></div>
+
+<table id="table" border="2" style="display:none;">
+    <tr id="ttr">
+        <th>Processes</th>
+        <th>Burst time</th>
+        <th>Waiting time</th>
+        <th>TurnAround time</th>
+    </tr>
+</table>
+
+<div id="array"></div>
+
+<script type="text/javascript">
+
+    var input1 = document.getElementById("input1");
+    var input2 = document.getElementById("input2");
+    var input3 = document.getElementById("input3");
+    input1.addEventListener("keypress", function (event) {
+        if (event.key === "Enter") {
+            document.getElementById("add1").click();
+        }
+    });
+    input2.addEventListener("keypress", function (event) {
+        if (event.key === "Enter") {
+            document.getElementById("add2").click();
+        }
+    });
+    input3.addEventListener("keypress", function (event) {
+        if (event.key === "Enter") {
+            document.getElementById("add3").click();
+        }
+    });
+
+
+
+    var i = 0;
+    var j = 0;
+    const art = [];
+    const bt = [];
+
+    function add(given_input) {
+        var val = document.getElementById(given_input).value;
+        if (given_input === 'input1') {
+            n = parseInt(val);
+            document.getElementById("every1").innerHTML = n;
+        } else if (given_input === 'input2') {
+            art[i] = parseInt(val);
+            document.getElementById("every2").innerHTML = art;
+            i++;
+        } else {
+            bt[j] = parseInt(val);
+            document.getElementById("every3").innerHTML = bt;
+            j++;
+        }
+        document.getElementById(given_input).value = "";
+    }
+
+    function del(given_input) {
+        if (given_input === 'input2') {
+            art.pop();
+            i -= 1;
+            document.getElementById("every2").innerHTML = art;
+        } else if (given_input === 'input3') {
+            bt.pop();
+            j -= 1;
+            document.getElementById("every3").innerHTML = bt;
+        }
+    }
+
+    function cle(given_input) {
+        if (given_input === 'input2') {
+            art.length = 0;
+            i = 0;
+            document.getElementById("every2").innerHTML = art;
+
+        } else if (given_input === 'input3') {
+            bt.length = 0;
+            j = 0;
+            document.getElementById("every3").innerHTML = bt;
+        }
+
+    }
+
+    function answer() {
+        var processes = new Array(n);
+        for (var i = 0; i < n; i++) {
+            processes[i] = i + 1;
+        }
+
+        findavgTime(processes, n, bt, art);
+        var a = document.getElementById('table');
+        if (a.style.display === "none") {
+            a.style.display = "inline-block";
+        }
+        else {
+            a.style.display = "none";
+        }
+    }
+    var str = "";
+    function findWaitingTime(processes, n, bt, wt, art) {
+        var service_time = Array.from({ length: n }, (_, i) => 0);
+        service_time[0] = art[0];
+        wt[0] = 0;
+        for (var i = 1; i < n; i++) {
+            var wasted = 0;
+            service_time[i] = service_time[i - 1] + bt[i - 1];
+
+            wt[i] = service_time[i] - art[i];
+
+
+            if (wt[i] < 0) {
+                wasted = Math.abs(wt[i]);
+                wt[i] = 0;
+            }
+
+            service_time[i] = service_time[i] + wasted;
+        }
+    }
+
+
+    function findTurnAroundTime(processes, n, bt, wt, tat) {
+
+        for (var i = 0; i < n; i++) {
+            tat[i] = bt[i] + wt[i];
+
+        }
+    }
+
+    function findavgTime(processes, n, bt, art) {
+
+        var wt = Array.from({ length: n }, (_, i) => 0.0);
+
+        var tat = Array.from({ length: n }, (_, i) => 0.0);
+
+
+        findWaitingTime(processes, n, bt, wt, art);
+
+        findTurnAroundTime(processes, n, bt, wt, tat);
+
+        var proc = new Array(n);
+        var total_wt = 0, total_tat = 0;
+        for (var i = 0; i < n; i++) {
+            proc[i] = new Array(4);
+            total_wt = total_wt + wt[i];
+            total_tat = total_tat + tat[i];
+            proc[i][0] = i + 1;
+            proc[i][1] = bt[i];
+            proc[i][2] = wt[i];
+            proc[i][3] = tat[i];
+        }
+
+        table = document.getElementById("table");
+        for (var i = 0; i < proc.length; i++) {
+            var newRow = table.insertRow(table.length);
+            for (var j = 0; j < proc[i].length; j++) {
+                var cell = newRow.insertCell(j);
+                cell.innerHTML = proc[i][j];
+            }
+
+        }
+        str += "Average Waiting Time = " + (total_wt / n).toFixed(5) + "<br>";
+        str += "Average Turn Around Time = " + (total_tat / n).toFixed(5) + "<br>";
+        document.getElementById("array").innerHTML = str;
+    }
+</script>
