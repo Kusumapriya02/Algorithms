@@ -4,6 +4,12 @@ layout: default1
 ref_name: rr
 ---
 
+<style>
+    th, td{
+        border: 1px solid #000000;
+        padding: 10px;
+    }
+</style>
 
 <div>
     <label for="input" class="form-label">Enter number of processes: </label>
@@ -16,14 +22,14 @@ ref_name: rr
     <button onclick="add('input2')" id="add2">Add</button><br><br>
     <p id="every2"></p>
 
-    <label for="input" class="form-label">Enter arrival time of processes: </label>
+    <label for="input" class="form-label">Enter arrival time of processes(different AT): </label>
     <input class="number" id="input3" /><br>
     <button onclick="add('input3')" id="add3">Add</button><br><br>
     <button onclick="del('input3')" id="del3">Delete</button><br><br>
     <button onclick="cle('input3')" id="clr3">Clear</button><br><br>
     <p id="every3"></p>
 
-    <label for="input" class="form-label">Enter burst time of processes: </label>
+    <label for="input" class="form-label">Enter burst time of processes(different BT): </label>
     <input class="number" id="input4" /><br>
     <button onclick="add('input4')" id="add4">Add</button><br><br>
     <button onclick="del('input4')" id="del4">Delete</button><br><br>
