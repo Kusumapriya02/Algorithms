@@ -35,15 +35,17 @@ ref_name: rabinkarp
   // the input alphabet
   let d = 256;
   str = "";
+  let con=0;
   /* pat -> pattern
     txt -> text
     q -> A prime number
   */
   function search(pat, txt, q) {
     str += "Given text is:";
-    str = str + "<br>" + txt + "<br>";
+    str = str + "<br>" + txt + "<br>"+ "<br>";
     str = str + "Given pattern to match is:" + "<br>";
     str += pat;
+    str += "<br>";
     str += "<br>";
     let M = pat.length;
     let N = txt.length;
@@ -85,7 +87,8 @@ ref_name: rabinkarp
         // if p == t and pat[0...M-1] =
         // txt[i, i+1, ...i+M-1]
         if (j == M)
-          str = str + "Pattern found at index " + i + "<br>";
+          str = str + "Pattern found at index " + i + "<br>" + "<br>" ;
+          con=1;
         //document.getElementById("ans").innerHTML=str;
         //document.write("Pattern found at index " +
         //i + "<br/>");
@@ -115,6 +118,10 @@ ref_name: rabinkarp
 
     // Function Call
     search(pat, txt, q);
+    if(con===0){
+     str= str + "Pattern not found." + "<br>" ;
+    }
+     
     document.getElementById("ans").innerHTML = str;
 
     // This code is contributed by target_2
