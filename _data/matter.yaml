@@ -1800,10 +1800,10 @@ rr:
     At time = 6,<br>&emsp;&#8226;Process P2 executes for 3 secs since execution time is greater than 3 secs.<br>&emsp;&#8226;The remaining execution time for P2 is 1 second(4-3 = 1).<br>&emsp;&#8226;processes P3 and P4 are in waiting queue. P3 starts executing for time quantum period of time.<br><br>
     At time = 9,<br>&emsp;&#8226;Process P3 also executes for 3 secs since execution time is greater than 3 secs.<br>&emsp;&#8226;The remaining execution time for P3 is 2 seconds(5-3 = 2).<br>&emsp;&#8226;Process P4 starts execution.<br><br>
     At time = 12,<br>&emsp;&#8226;Process P4 completed execution.<br>&emsp;&#8226;Now one cycle is completed. P1, P2, P3 are still in the waiting queue waiting for their turn.<br>&emsp;&#8226;Process P1 starts executing.<br><br>
-    At time = 15,<br>&emsp;&#8226;Process P1 exexecutes for 3 secs since execution time is greater than 3 secs.<br>&emsp;&#8226;The remaining execution time for P1 is 4 seconds(7-3 = 4).<br>&emsp;&#8226;Process P2 starts execution.<br><br>
+    At time = 15,<br>&emsp;&#8226;Process P1 executes for 3 secs since execution time is greater than 3 secs.<br>&emsp;&#8226;The remaining execution time for P1 is 4 seconds(7-3 = 4).<br>&emsp;&#8226;Process P2 starts execution.<br><br>
     At time = 16,<br>&emsp;&#8226;Process P2 completes execution since remaining execution time of P2 is less than time quantum.<br>&emsp;&#8226;Process P3 starts execution.<br><br>
     At time = 18,<br>&emsp;&#8226;Process P3 completes execution since remaining execution time of P3 is less than time quantum.<br>&emsp;&#8226;Now again a cycle is completed and process P1 starts execution.<br><br>
-    At time = 21,<br>&emsp;&#8226;Process P1 exexecutes for 3 secs since execution time is greater than 3 secs.<br>&emsp;&#8226;The remaining execution time for P1 is 1 second(-3 = 1).<br><br>
+    At time = 21,<br>&emsp;&#8226;Process P1 exexecutes for 3 secs since execution time is greater than 3 secs.<br>&emsp;&#8226;The remaining execution time for P1 is 1 second(4-3 = 1).<br><br>
     At time = 22,<br>&emsp;&#8226;Process P1 completed execution.<br><br>
     Turn Around Time :<br> 
     &emsp;P1 : 22-0 = 22<br>
