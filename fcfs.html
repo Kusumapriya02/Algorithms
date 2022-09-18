@@ -13,29 +13,42 @@ ref_name: fcfs
 
 <div>
     <label>(Non-Preemptive)</label><br><br>
-    <label for="input" class="form-label">Enter number of processes: </label>
-    <input class="number" id="input1" /><br>
-    <button onclick="add('input1')" id="add1">Add</button><br><br>
+     <div class="row">
+            <div class="col-md-4">
+                <h5>Enter number of processes: </h5>
+                <input type="number" class="form-control" id="input1" placeholder="Enter a valid number:">
+            </div>
+        </div><br>
+   
+    <button class="btn btn-primary" onclick="add('input1')" id="add1">Add</button><br><br>
     <p id="every1"></p>
-
-    <label for="input" class="form-label">Enter arrival time of processes: </label>
-    <input class="number" id="input2" /><br>
-    <button onclick="add('input2')" id="add2">Add</button>
-    <button onclick="del('input2')" id="del2">Delete</button>
-    <button onclick="cle('input2')" id="clr2">Clear</button><br><br>
+    <div class="row">
+            <div class="col-md-4">
+                <h5>Enter arrival time of processes: </h5>
+                <input type="number" class="form-control" id="input2" placeholder="Enter a valid number:">
+            </div>
+        </div><br>
+   
+    <button class="btn btn-primary" onclick="add('input2')" id="add2">Add</button>
+    <button class="btn btn-primary" onclick="del('input2')" id="del2">Delete</button>
+    <button class="btn btn-primary" onclick="cle('input2')" id="clr2">Clear</button><br><br>
     <p id="every2"></p>
-
-    <label for="input" class="form-label">Enter burst time of processes: </label>
-    <input class="number" id="input3" /><br>
-    <button onclick="add('input3')" id="add3">Add</button>
-    <button onclick="del('input3')" id="del3">Delete</button>
-    <button onclick="cle('input3')" id="clr3">Clear</button><br><br>
+     <div class="row">
+            <div class="col-md-4">
+                <h5>Enter burst time of processes: </h5>
+                <input type="number" class="form-control" id="input3" placeholder="Enter a valid number:">
+            </div>
+        </div><br>
+    
+    <button class="btn btn-primary" onclick="add('input3')" id="add3">Add</button>
+    <button class="btn btn-primary" onclick="del('input3')" id="del3">Delete</button>
+    <button class="btn btn-primary" onclick="cle('input3')" id="clr3">Clear</button><br><br>
     <p id="every3"></p>
 
-    <button onclick="answer()">click</button><br><br>
+    <button class="btn btn-primary" onclick="answer()">click</button><br><br>
 
 </div>
-<div id="result"></div>
+<p id="result"></p>
 
 <table id="table" border="2" style="display:none;">
     <tr id="ttr">
